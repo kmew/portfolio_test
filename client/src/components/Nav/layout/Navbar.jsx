@@ -9,10 +9,11 @@ import MailIcon from '@material-ui/icons/Mail'
 
 
 const Container = styled.div`
-    margin: 100px 0 0 10px;
+    margin: 200px 0 0 10px;
     width: fit-content;
     height: fit-content;
     position: fixed;
+    z-index: 1;
 `
 
 
@@ -25,6 +26,7 @@ const SideNav = styled.div`
     opacity: 50%;
     display: flex;
     flex-direction: column;
+    border-radius: 7px;
 `
 
 
@@ -41,7 +43,7 @@ const MenuBox = styled.div`
     width: ${(props) => (props.open ? '150px' : '65px')};
     height: 65px;
     cursor: pointer;
-    padding: 5px;
+    padding: 17px 5px 5px 5px;
     background: #50514F;
     margin: 5px;
     :hover {

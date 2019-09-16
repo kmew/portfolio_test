@@ -1,6 +1,10 @@
 import React, { Component, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import Navbar from '../components/Nav/layout/Navbar'
+
+import Logo from '../components/logo/layout/Logo'
+import Navbar from '../components/nav/layout/Navbar'
+import Home from '../components/home/layout/Home'
+import Contact from '../components/contact/layout/Contact'
 
 
 const Container = styled.div`
@@ -9,26 +13,36 @@ const Container = styled.div`
 
 const FieldRow1 = styled.div`
   width: 100%;
-  height: 600px;
-  background: #70C1B3;
+  height: 950px;
+  background: none;
+  position: relative;
 `
 
 const FieldRow2 = styled.div`
   width: 100%;
   height: 600px;
   background: #F25F5C;
+  position: relative;
 `
 
 const FieldRow3 = styled.div`
   width: 100%;
   height: 600px;
-  background: #FFE066;
+  background: #247BA0;
+  position: relative;
 `
 
 const FieldRow4 = styled.div`
   width: 100%;
-  height: 600px;
-  background: #FFA69E;
+  height: 500px;
+  position: relative;
+`
+
+const FieldRow5 = styled.div`
+  width: 100%;
+  height: 430px;
+  background: none;
+  position: relative;
 `
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
@@ -47,11 +61,19 @@ const SinglePage = () => {
 
   return (
     <Container>
+      <Logo />
       <Navbar scrollToMyRef={executeScroll} />
-      <FieldRow1 ref={myRef1} />
+      <FieldRow1 ref={myRef1}>
+        <Home />
+      </FieldRow1>
       <FieldRow2 ref={myRef2} />
       <FieldRow3 ref={myRef3} />
-      <FieldRow4 ref={myRef4} />
+      <FieldRow4 ref={myRef4}>
+        <Contact />
+      </FieldRow4>
+      <FieldRow5>
+        <Home />
+      </FieldRow5>
     </Container>
   )
 }
