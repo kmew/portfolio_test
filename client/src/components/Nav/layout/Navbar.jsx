@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import MenuIcon from '@material-ui/icons/Menu'
@@ -32,10 +32,12 @@ const SideNav = styled.div`
 
 const NavList = styled.p`
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 700;
     color: #247BA0;
     text-align: center;
     padding: 5px;
+    line-height: 1.6;
 `
 
 
@@ -43,7 +45,7 @@ const MenuBox = styled.div`
     width: ${(props) => (props.open ? '150px' : '65px')};
     height: 65px;
     cursor: pointer;
-    padding: 17px 5px 5px 5px;
+    padding: 20px 5px 5px 5px;
     background: #50514F;
     margin: 5px;
     :hover {
@@ -78,17 +80,16 @@ class Navbar extends Component {
       } = this.state
 
       const {
-        scrollToMyRef,
+        scrollToRef,
+        NavRef,
       } = this.props
 
       const {
-        executeScroll1,
-        executeScroll2,
-        executeScroll3,
-        executeScroll4,
-      } = scrollToMyRef
-
-      console.log(executeScroll1)
+        HomeRef,
+        AboutRef,
+        WorkRef,
+        ContactRef,
+      } = NavRef
 
       return (
         <Container>
@@ -102,7 +103,7 @@ class Navbar extends Component {
               </NavList>
             </MenuBox>
             <MenuBox
-              onClick={executeScroll1}
+              onClick={() => scrollToRef(HomeRef)}
               open={open}
             >
               <NavList href="#field1">
@@ -115,7 +116,7 @@ class Navbar extends Component {
               </NavList>
             </MenuBox>
             <MenuBox
-              onClick={executeScroll2}
+              onClick={() => scrollToRef(AboutRef)}
               open={open}
             >
               <NavList href="#field2">
@@ -128,7 +129,7 @@ class Navbar extends Component {
               </NavList>
             </MenuBox>
             <MenuBox
-              onClick={executeScroll3}
+              onClick={() => scrollToRef(WorkRef)}
               open={open}
             >
               <NavList href="#field3">
@@ -141,7 +142,7 @@ class Navbar extends Component {
               </NavList>
             </MenuBox>
             <MenuBox
-              onClick={executeScroll4}
+              onClick={() => scrollToRef(ContactRef)}
               open={open}
             >
               <NavList href="#field4">

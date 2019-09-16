@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import Logo from '../../logo/layout/Logo'
+
 
 const Wrapper = styled.div`
   width: 100%
@@ -44,6 +46,7 @@ class Home extends Component {
   render() {
     return (
       <Wrapper>
+        <Logo />
         <TextCard>
           <CardHead>HEADER</CardHead>
           <CardP>
