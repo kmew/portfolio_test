@@ -1,20 +1,24 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 
-import Logo from '../components/logo/layout/Logo'
 import Navbar from '../components/nav/layout/Navbar'
 import Home from '../components/home/layout/Home'
 import Contact from '../components/contact/layout/Contact'
+import Background from '../components/background/elements/Background'
 
 
 const Container = styled.div`
 `
 
 
+const Content = styled.div`
+`
+
+
 const HomeBlock = styled.div`
   width: 100%;
   height: 950px;
-  background: green;
+  background: none;
   position: relative;
 `
 
@@ -58,16 +62,18 @@ const SinglePage = () => {
   return (
     <Container>
       <Navbar scrollToRef={scrollToRef} NavRef={NavRef} />
-      <HomeBlock ref={HomeRef}>
-        <Logo />
-        <Home />
-      </HomeBlock>
-      <AboutBlock ref={AboutRef} />
-      <WorkBlock ref={WorkRef} />
-      <ContactBlock ref={ContactRef}>
-        <Contact />
-      </ContactBlock>
-      <Space />
+      <Background />
+      <Content>
+        <HomeBlock ref={HomeRef}>
+          <Home />
+        </HomeBlock>
+        <AboutBlock ref={AboutRef} />
+        <WorkBlock ref={WorkRef} />
+        <ContactBlock ref={ContactRef}>
+          <Contact />
+        </ContactBlock>
+        <Space />
+      </Content>
     </Container>
   )
 }

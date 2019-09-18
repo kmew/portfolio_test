@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px;
-    width: 100%;
-    height: fit-content;
-    position: fixed;
-    z-index: 1;
-    text-align: center;
 `
 
+
 const Box = styled.div`
+    margin-top: 70px;
     background: rgba(169,169,169,0.5);
     width: fit-content;
     padding: 10px 20px;
@@ -32,7 +27,7 @@ class Logo extends Component {
     return (
       <Wrapper>
         <Box>
-          <Text>TEST</Text>
+          <Text>LOGO</Text>
         </Box>
       </Wrapper>
     )
@@ -40,3 +35,4 @@ class Logo extends Component {
 }
 
 export default Logo
+

@@ -19,27 +19,12 @@ const ColoredBox = styled.div`
     background-position:center;
 `
 
-const TextBox = styled.div`
-    width: 100%;
-    height: 100;
-    padding: 150px 50px 30px 50px;
-`
-
-const Text = styled.p`
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
-`
 
 class Contact extends Component {
   render() {
     return (
       <Wrapper>
-        <ColoredBox>
-          <TextBox>
-            <Text>PHONE: 0XX-XXX-XXXX</Text>
-            <Text>EMAIL: example@exmail.com</Text>
-          </TextBox>
-        </ColoredBox>
+        <ColoredBox />
       </Wrapper>
     )
   }

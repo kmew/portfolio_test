@@ -1,44 +1,24 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import Logo from '../../logo/layout/Logo'
+import Logo from '../elements/Logo'
+import TextCard from '../elements/TextCard'
 
 
 const Wrapper = styled.div`
-  width: 100%
-  position: fixed;
+  width: 100%;
+  height: 100%;
+  position: relative;
 `
 
-const Img = styled.div`
-  height: 100vh;
-  background-image:url('https://wallpaperplay.com/walls/full/f/3/d/121407.jpg');
-  background-size:cover;
-  background-position:center;
+const LogoWrapper = styled.div`
+  top: 0px;
+  position: relative;
 `
 
-const TextCard = styled.div`
-  width: 500px;
-  padding: 0px 30px 0px 30px;
-  position: fixed;
-  z-index: 1;
-  left: 170px;
-  bottom: 80px;
-  background: rgba(169,169,169,0.1);
-  border-radius: 7px;
-`
-
-const CardHead = styled.p`
-  font-family: 'Open Sans', sans-serif;
-  font-size: 28px;
-  color: #D2DAC5;
-  margin: 20px 0px;
-`
-
-const CardP = styled.p`
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
-  color: #D2DAC5;
-  margin: 10px 0px;
+const CardWrapper = styled.div`
+  top: 600px;
+  position: relative;
 `
 
 
@@ -46,14 +26,12 @@ class Home extends Component {
   render() {
     return (
       <Wrapper>
-        <Logo />
-        <TextCard>
-          <CardHead>HEADER</CardHead>
-          <CardP>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, adipisci maxime culpa obcaecati numquam ex.
-          </CardP>
-        </TextCard>
-        <Img src="https://wallpaperaccess.com/full/667339.jpg" alt="First" />
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
+        <CardWrapper>
+          <TextCard />
+        </CardWrapper>
       </Wrapper>
     )
   }
