@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Navbar from '../components/nav/layout/Navbar'
 import Home from '../components/home/layout/Home'
+import Work from '../components/work/layout/Work'
 import Contact from '../components/contact/layout/Contact'
 import Background from '../components/background/elements/Background'
 
@@ -31,9 +32,10 @@ const AboutBlock = styled.div`
 
 const WorkBlock = styled.div`
   width: 100%;
-  height: 55vh;
+  min-height: 55vh;
   background: #247BA0;
   position: relative;
+  padding-bottom: 70px;
 `
 
 const ContactBlock = styled.div`
@@ -68,7 +70,9 @@ const SinglePage = () => {
           <Home />
         </HomeBlock>
         <AboutBlock ref={AboutRef} />
-        <WorkBlock ref={WorkRef} />
+        <WorkBlock ref={WorkRef}>
+          <Work />
+        </WorkBlock>
         <ContactBlock ref={ContactRef}>
           <Contact />
         </ContactBlock>
