@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 
 const ColoredBox = styled.div`
-    width: 1200px;
+    width: 65%;
     height: 100%;
     background: #70C1B3;
     background-size:cover;

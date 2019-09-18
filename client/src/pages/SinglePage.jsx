@@ -17,34 +17,34 @@ const Content = styled.div`
 
 const HomeBlock = styled.div`
   width: 100%;
-  height: 950px;
+  height: 100vh;
   background: none;
   position: relative;
 `
 
 const AboutBlock = styled.div`
   width: 100%;
-  height: 600px;
+  height: 55vh;
   background: #F25F5C;
   position: relative;
 `
 
 const WorkBlock = styled.div`
   width: 100%;
-  height: 600px;
+  height: 55vh;
   background: #247BA0;
   position: relative;
 `
 
 const ContactBlock = styled.div`
   width: 100%;
-  height: 500px;
+  height: 45vh;
   position: relative;
 `
 
 const Space = styled.div`
   width: 100%;
-  height: 440px;
+  height: 55vh;
   background: none;
   position: relative;
 `

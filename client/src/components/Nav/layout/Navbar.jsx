@@ -9,16 +9,19 @@ import MailIcon from '@material-ui/icons/Mail'
 
 
 const Container = styled.div`
-    margin: 200px 0 0 10px;
+    margin-left: 10px;
     width: fit-content;
-    height: fit-content;
+    height: 100vh;
     position: fixed;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 
 
 const SideNav = styled.div`
-    position: fixed;
     width: ${(props) => (props.open ? '170px' : '85px')};
     height: 425px;
     background: none;
@@ -27,6 +30,18 @@ const SideNav = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 7px;
+    @media (max-width: 1024px) {
+      width: ${(props) => (props.open ? '160px' : '80px')};
+      height: 390px;
+    }
+    @media (max-width: 768px) {
+      width: ${(props) => (props.open ? '140px' : '70px')};
+      height: 370px;
+    }
+    @media (max-width: 425px) {
+      width: ${(props) => (props.open ? '100px' : '50px')};
+      height: 235px;
+    }
 `
 
 
@@ -53,6 +68,23 @@ const MenuBox = styled.div`
     }
     :hover ${NavList} {
         background: #50514F;
+    }
+    @media (max-width: 1024px) {
+      width: ${(props) => (props.open ? '120px' : '60px')};
+      height: 60px;
+      padding: 15px 5px 5px 5px;
+    }
+    @media (max-width: 768px) {
+      width: ${(props) => (props.open ? '68px' : '54px')};
+      height: 54px;
+      padding: 13px 5px 5px 5px;
+      margin: 3px;
+    }
+    @media (max-width: 425px) {
+      width: ${(props) => (props.open ? '60px' : '36px')};
+      height: 36px;
+      padding: 2px 6px 5px 4px;
+      margin: 2px;
     }
 `
 

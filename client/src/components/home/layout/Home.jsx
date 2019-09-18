@@ -16,9 +16,15 @@ const LogoWrapper = styled.div`
   position: relative;
 `
 
+const BottomDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  background: orange;
+`
+
 const CardWrapper = styled.div`
-  top: 600px;
-  position: relative;
+bottom: 10px;
+position: absolute;
 `
 
 
