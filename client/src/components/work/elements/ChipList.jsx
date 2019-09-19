@@ -13,8 +13,8 @@ const Wrapper = styled.div`
 
 const ChipBox = styled.div`
     margin-top: 30px;
-    max-width: 25%;
-    padding: 10px 20px;
+    max-width: 40%;
+    padding: 5px 10px;
     border-radius: 10px;
     border: 1px solid #D2DAC5;
     display: flex;
@@ -30,61 +30,45 @@ class ChipList extends Component {
     }
 
     render() {
+      const {
+        chipList,
+      } = this.props
+
+      const chipArray = []
+      Object.entries(chipList).forEach(([key, value]) => {
+        chipArray.push(
+          <Chip
+            key={key}
+            style={{margin: '5px'}}
+            icon={<CodeIcon style={{ color: '#FFA69E' }} />}
+            label={value}
+            clickable
+            color="#247BA0"
+            onDelete={this.handleDelete}
+            deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
+          />
+        )
+      })
+
       return (
         <Wrapper>
           <ChipBox>
-            <Chip
-              icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-              label="REACT"
-              clickable
-              color="#247BA0"
-              onDelete={this.handleDelete}
-              deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-            />
-            <Chip
-              icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-              label="MERN"
-              clickable
-              color="#247BA0"
-              onDelete={this.handleDelete}
-              deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-            />
-            <Chip
-              icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-              label="FRONT-END"
-              clickable
-              color="#247BA0"
-              onDelete={this.handleDelete}
-              deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-            />
-            <Chip
-              icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-              label="STYLED-COMPONENT"
-              clickable
-              color="#247BA0"
-              onDelete={this.handleDelete}
-              deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-            />
-            <Chip
-              icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-              label="RESPONSIVE"
-              clickable
-              color="#247BA0"
-              onDelete={this.handleDelete}
-              deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-            />
-            <Chip
-              icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-              label="# INIT"
-              clickable
-              color="#247BA0"
-              onDelete={this.handleDelete}
-              deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-            />
+            {chipArray}
           </ChipBox>
         </Wrapper>
       )
     }
 }
+
+{/* <Chip
+key={data.key}
+style={{margin: '5px'}}
+icon={<CodeIcon style={{ color: '#FFA69E' }} />}
+label={data.value}
+clickable
+color="#247BA0"
+onDelete={this.handleDelete}
+deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
+/> */}
 
 export default ChipList

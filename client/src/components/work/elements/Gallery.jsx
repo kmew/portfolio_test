@@ -12,49 +12,65 @@ const Wrapper = styled.div`
 `
 
 const GalleryBox = styled.div`
-    width: 40%;
+    width: 670px;
     border-radius: 10px;
     border: 1px solid #D2DAC5;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin: 10px;
+    @media (max-width: 768px) {
+      width: 520px;
+    }
+    @media (max-width: 425px) {
+      width: 350px;
+    }
+    @media (max-width: 425px) {
+      width: 220px;
+    }
+    @media (max-width: 320px) {
+      width: 180px;
+    }
 `
 
 const ImgBox = styled.div`
-    width: 30%;
-    height: 30%;
+    width: 200px;
+    height: 200px;
     background-size:cover;
     background-position:center;
     padding: 10px;
-    border: 1px solid red;
+    @media (max-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
 `
 
 const Img = styled.img`
-    width: 230px;
-    height: 180px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 `
 
 class Gallery extends Component {
   render() {
+    const {
+      imgList,
+    } = this.props
+
+    const imgArray = []
+    Object.entries(imgList).forEach(([key, value]) => {
+      imgArray.push(
+        <ImgBox>
+          <Img src={value} alt={key} />
+        </ImgBox>
+      )
+    })
+
     return (
       <Wrapper>
         <GalleryBox>
-          <ImgBox>
-            <Img src="https://wallpaperaccess.com/full/335893.jpg" alt="First" />
-          </ImgBox>
-          <ImgBox>
-            <Img src="https://wallpaperaccess.com/full/336022.jpg" alt="First" />
-          </ImgBox>
-          <ImgBox>
-            <Img src="https://wallpaperaccess.com/full/336023.jpg" alt="First" />
-          </ImgBox>
-          <ImgBox>
-            <Img src="https://wallpaperaccess.com/full/335910.jpg" alt="First" />
-          </ImgBox>
-          <ImgBox>
-            <Img src="https://wallpaperaccess.com/full/181658.jpg" alt="First" />
-          </ImgBox>
+          {imgArray}
+          {/* Modal */}
         </GalleryBox>
       </Wrapper>
     )

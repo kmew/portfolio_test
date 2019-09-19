@@ -131,7 +131,7 @@ class Navbar extends Component {
               open={open}
             >
               <NavList href="/">
-                <MenuIcon style={{ fontSize: 30, color: '#FFA69E' }} />
+                <MenuIcon style={{ fontSize: '30px', color: '#FFA69E' }} />
               </NavList>
             </MenuBox>
             <MenuBox
