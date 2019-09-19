@@ -46,9 +46,21 @@ const ImgBox = styled.div`
 `
 
 const Img = styled.img`
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+`
+
+const Overlay = styled.div`
+  background: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+  :hover {
+    background: rgba(169,169,169);
+  }
 `
 
 class Gallery extends Component {
@@ -62,6 +74,7 @@ class Gallery extends Component {
       imgArray.push(
         <ImgBox>
           <Img src={value} alt={key} />
+          <Overlay />
         </ImgBox>
       )
     })

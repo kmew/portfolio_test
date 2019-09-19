@@ -22,7 +22,7 @@ const Card = styled.div`
     width: 250px;
     padding: 5px 20px 5px 20px;
   }
-  @media (max-width: 320px) {
+  @media (max-width: 375px) {
     left: 20px;
     width: 250px;
     padding: 5px 20px 5px 20px;
@@ -36,9 +36,6 @@ const CardHead = styled.p`
   margin: 10px 0px;
   @media (max-width: 1024px) {
     font-size: 18px;
-  }
-  @media (max-width: 768px) {
-    font-size: 17px;
   }
   @media (max-width: 425px) {
     font-size: 16px;
@@ -69,7 +66,7 @@ class TextCard extends Component {
         <Card>
           <CardHead>HEADER</CardHead>
           <CardP>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, adipisci maxime culpa obcaecati numquam ex.
+            Two mercenary start their adventure of front-end executer. We work under contact of both gig-freelancer and from tavern. As the sun rising, let begin the journey.
           </CardP>
         </Card>
       </Wrapper>

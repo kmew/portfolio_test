@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Chip from '@material-ui/core/Chip'
+import Popover from '@material-ui/core/Popover'
+import Typography from '@material-ui/core/Typography'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import CodeIcon from '@material-ui/icons/Code'
 
@@ -24,9 +26,7 @@ const ChipBox = styled.div`
 
 
 class ChipList extends Component {
-    state = { }
-
-    handleDelete = () => {
+    handleClick = () => {
     }
 
     render() {
@@ -39,12 +39,12 @@ class ChipList extends Component {
         chipArray.push(
           <Chip
             key={key}
-            style={{margin: '5px'}}
+            style={{ margin: '5px' }}
             icon={<CodeIcon style={{ color: '#FFA69E' }} />}
             label={value}
             clickable
             color="#247BA0"
-            onDelete={this.handleDelete}
+            onDelete={this.handleClick}
             deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
           />
         )
