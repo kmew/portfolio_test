@@ -31,6 +31,9 @@ class Work extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      anchorEl: null,
+      open: false,
+      smileColor: '#247BA0',
       chipList: {
         chip1: 'REACT',
         chip2: 'MERN',
@@ -46,7 +49,7 @@ class Work extends Component {
         },
         card2: {
           img: 'https://wallpaperaccess.com/full/336022.jpg',
-          txt: 'TROPICAL'
+          txt: 'TROPICAL',
         },
         card3: {
           img: 'https://wallpaperaccess.com/full/336023.jpg',
@@ -59,26 +62,67 @@ class Work extends Component {
         card5: {
           img: 'https://wallpaperaccess.com/full/181658.jpg',
           txt: 'VENICE',
-        }
+        },
       },
     }
   }
 
+  handleModalOpen = () => {
+    this.setState({
+      open: true,
+    })
+  }
+
+  handleModalClose = () => {
+    this.setState({
+      open: false,
+    })
+  }
+
+  handlePopClick = (event) => {
+    const ranCol = Math.floor(Math.random() * 16777215).toString(16)
+    this.setState({
+      anchorEl: event.currentTarget,
+      smileColor: ranCol,
+    })
+  }
+
+  handlePopClose = () => {
+    this.setState({
+      anchorEl: null,
+    })
+  }
+
   render() {
     const {
+      anchorEl,
+      open,
+      smileColor,
       chipList,
       imgList,
     } = this.state
+
     return (
       <Wrapper>
         <HeadWrapper>
           <Head />
         </HeadWrapper>
         <ChipWrapper>
-          <ChipList chipList={chipList}/>
+          <ChipList
+            chipList={chipList}
+            anchorEl={anchorEl}
+            smileColor={smileColor}
+            handlePopClick={this.handlePopClick}
+            handlePopClose={this.handlePopClose}
+          />
         </ChipWrapper>
         <GalleryWrapper>
-          <Gallery imgList={imgList}/>
+          <Gallery
+            imgList={imgList}
+            open={open}
+            handleModalOpen={this.handleModalOpen}
+            handleModalClose={this.handleModalClose}
+          />
         </GalleryWrapper>
       </Wrapper>
     )

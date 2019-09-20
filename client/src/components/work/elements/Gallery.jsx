@@ -78,6 +78,7 @@ const OverlayButton = styled.button`
   color: #FFA69E;
   cursor: pointer;
   border-radius: 10px;
+  border: 1px solid white;
   background: none;
   padding: 10px;
   margin-top: 10px;
@@ -107,28 +108,12 @@ const StyledP = styled.h1`
 `
 
 class Gallery extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false,
-    }
-  }
-
-  handleOpen = () => {
-    this.setState({
-      open: true,
-    })
-  };
-  
-  handleClose = () => {
-    this.setState({
-      open: false,
-    })
-  };
-
   render() {
     const {
+      open,
       imgList,
+      handleModalOpen,
+      handleModalClose,
     } = this.props
 
     const imgArray = []
@@ -137,7 +122,7 @@ class Gallery extends Component {
         <ImgBox>
           <Overlay>
             <OverlayText>{value.txt}</OverlayText>
-            <OverlayButton onClick={this.handleOpen}>LINK</OverlayButton>
+            <OverlayButton onClick={handleModalOpen}>LINK</OverlayButton>
           </Overlay>
           <Img src={value.img} alt={key} />
         </ImgBox>
@@ -153,14 +138,14 @@ class Gallery extends Component {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-            }} 
+            }}
             disableEnforceFocus
             disableAutoFocus
-            open={this.state.open}
-            onClose={this.handleClose}
+            open={open}
+            onClose={handleModalClose}
           >
             <StyledModal>
-              <StyledP>TO THE WEB</StyledP>
+              <StyledP>TO BE CONTINUE...</StyledP>
             </StyledModal>
           </Modal>
         </GalleryBox>

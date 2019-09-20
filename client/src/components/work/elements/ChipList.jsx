@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 import Chip from '@material-ui/core/Chip'
 import Popover from '@material-ui/core/Popover'
-import Typography from '@material-ui/core/Typography'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import CodeIcon from '@material-ui/icons/Code'
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions'
 
 const Wrapper = styled.div`
     display: flex;
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `
 
 const ChipBox = styled.div`
-    margin-top: 30px;
+    margin-top: 50px;
     max-width: 40%;
     padding: 5px 10px;
     border-radius: 10px;
@@ -24,84 +24,66 @@ const ChipBox = styled.div`
     flex-wrap: wrap;
 `
 
+const PopUp = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  padding: 5px;
+`
+
 
 class ChipList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      anchorEl: null,
-    }
-  }
+  render() {
+    const {
+      anchorEl,
+      chipList,
+      smileColor,
+      handlePopClick,
+      handlePopClose,
+    } = this.props
 
-    handleClick(event) {
-      this.setState({
-        anchorEl: event.currentTarget,
-      })
-    }
+    const open = Boolean(anchorEl)
 
-    handleClose() {
-      this.setState({
-        anchorEl: null,
-      })
-    }
-
-    render() {
-      const {
-        chipList,
-      } = this.props
-
-      const open = Boolean(this.state.anchorEl);
-
-      const chipArray = []
-      Object.entries(chipList).forEach(([key, value]) => {
-        chipArray.push(
-          <Chip
-            key={key}
-            style={{ margin: '5px' }}
-            icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-            label={value}
-            clickable
-            color="#247BA0"
-            onDelete={this.handleClick}
-            deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-          />
-        )
-      })
-
-      return (
-        <Wrapper>
-          <ChipBox>
-            {chipArray}
-            <Popover
-              open={open}
-              anchorEl={this.state.anchorEl}
-              onClose={this.handleClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
-            >
-              TEST
-            </Popover>
-          </ChipBox>
-        </Wrapper>
+    const chipArray = []
+    Object.entries(chipList).forEach(([key, value]) => {
+      chipArray.push(
+        <Chip
+          key={key}
+          style={{ margin: '5px' }}
+          icon={<CodeIcon style={{ color: '#70C1B3' }} />}
+          label={value}
+          clickable
+          color="#247BA0"
+          onDelete={handlePopClick}
+          deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
+        />
       )
-    }
-}
+    })
 
-{/* <Chip
-key={data.key}
-style={{margin: '5px'}}
-icon={<CodeIcon style={{ color: '#FFA69E' }} />}
-label={data.value}
-clickable
-color="#247BA0"
-onDelete={this.handleDelete}
-deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-/> */}
+    return (
+      <Wrapper>
+        <ChipBox>
+          {chipArray}
+          <Popover
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handlePopClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <PopUp>
+              <EmojiEmotionsIcon style={{ color: `${smileColor}` }} />
+            </PopUp>
+          </Popover>
+        </ChipBox>
+      </Wrapper>
+    )
+  }
+}
 
 export default ChipList

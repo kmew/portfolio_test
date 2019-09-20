@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `
 
 const Box = styled.div`
-    margin-top: 30px;
+    margin-top: 50px;
     background: rgba(169,169,169,0.5);
     width: fit-content;
     padding: 10px 20px;
