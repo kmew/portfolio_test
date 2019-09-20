@@ -26,13 +26,31 @@ const ChipBox = styled.div`
 
 
 class ChipList extends Component {
-    handleClick = () => {
+  constructor(props) {
+    super(props)
+    this.state = {
+      anchorEl: null,
+    }
+  }
+
+    handleClick(event) {
+      this.setState({
+        anchorEl: event.currentTarget,
+      })
+    }
+
+    handleClose() {
+      this.setState({
+        anchorEl: null,
+      })
     }
 
     render() {
       const {
         chipList,
       } = this.props
+
+      const open = Boolean(this.state.anchorEl);
 
       const chipArray = []
       Object.entries(chipList).forEach(([key, value]) => {
@@ -54,6 +72,21 @@ class ChipList extends Component {
         <Wrapper>
           <ChipBox>
             {chipArray}
+            <Popover
+              open={open}
+              anchorEl={this.state.anchorEl}
+              onClose={this.handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              TEST
+            </Popover>
           </ChipBox>
         </Wrapper>
       )

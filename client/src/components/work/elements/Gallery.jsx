@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import Modal from '@material-ui/core/Modal';
 
 const Wrapper = styled.div`
     margin-top: 40px;
@@ -33,18 +34,6 @@ const GalleryBox = styled.div`
     }
 `
 
-const ImgBox = styled.div`
-    width: 200px;
-    height: 200px;
-    background-size:cover;
-    background-position:center;
-    padding: 10px;
-    @media (max-width: 768px) {
-      width: 150px;
-      height: 150px;
-    }
-`
-
 const Img = styled.img`
   width: 100%;
   height: 100%;
@@ -52,18 +41,91 @@ const Img = styled.img`
 `
 
 const Overlay = styled.div`
-  background: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: none;
+  background: rgba(80,81,79,0.9);
   border-radius: 10px;
   width: 100%;
   height: 100%;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+
+const ImgBox = styled.div`
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-size:cover;
+    background-position:center;
+    margin: 10px;
+    @media (max-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
+    :hover ${Overlay} {
+      display: flex;
+    }
+`
+
+const OverlayButton = styled.button`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #FFA69E;
   cursor: pointer;
-  z-index: 1;
-  :hover {
-    background: rgba(169,169,169);
-  }
+  border-radius: 10px;
+  background: none;
+  padding: 10px;
+  margin-top: 10px;
+`
+
+const OverlayText = styled.p`
+  font-family: 'Open Sans', sans-serif;
+  color: rgba(169,169,169);
+  font-size: 14px;
+`
+
+const StyledModal = styled.div`
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  background: rgba(169,169,169);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50 + rand();
+  left: 50 + rand();
+`
+
+const StyledP = styled.h1`
+  font-family: 'Open Sans', sans-serif;
 `
 
 class Gallery extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false,
+    }
+  }
+
+  handleOpen = () => {
+    this.setState({
+      open: true,
+    })
+  };
+  
+  handleClose = () => {
+    this.setState({
+      open: false,
+    })
+  };
+
   render() {
     const {
       imgList,
@@ -73,8 +135,11 @@ class Gallery extends Component {
     Object.entries(imgList).forEach(([key, value]) => {
       imgArray.push(
         <ImgBox>
-          <Img src={value} alt={key} />
-          <Overlay />
+          <Overlay>
+            <OverlayText>{value.txt}</OverlayText>
+            <OverlayButton onClick={this.handleOpen}>LINK</OverlayButton>
+          </Overlay>
+          <Img src={value.img} alt={key} />
         </ImgBox>
       )
     })
@@ -83,7 +148,21 @@ class Gallery extends Component {
       <Wrapper>
         <GalleryBox>
           {imgArray}
-          {/* Modal */}
+          <Modal
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }} 
+            disableEnforceFocus
+            disableAutoFocus
+            open={this.state.open}
+            onClose={this.handleClose}
+          >
+            <StyledModal>
+              <StyledP>TO THE WEB</StyledP>
+            </StyledModal>
+          </Modal>
         </GalleryBox>
       </Wrapper>
     )

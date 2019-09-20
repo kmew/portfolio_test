@@ -40,11 +40,26 @@ class Work extends Component {
         chip6: '# INIT',
       },
       imgList: {
-        img1: 'https://wallpaperaccess.com/full/335893.jpg',
-        img2: 'https://wallpaperaccess.com/full/336022.jpg',
-        img3: 'https://wallpaperaccess.com/full/336023.jpg',
-        img4: 'https://wallpaperaccess.com/full/335910.jpg',
-        img5: 'https://wallpaperaccess.com/full/181658.jpg',
+        card1: {
+          img: 'https://wallpaperaccess.com/full/335893.jpg',
+          txt: 'ROCKET',
+        },
+        card2: {
+          img: 'https://wallpaperaccess.com/full/336022.jpg',
+          txt: 'TROPICAL'
+        },
+        card3: {
+          img: 'https://wallpaperaccess.com/full/336023.jpg',
+          txt: 'METRO',
+        },
+        card4: {
+          img: 'https://wallpaperaccess.com/full/335910.jpg',
+          txt: 'CAVE',
+        },
+        card5: {
+          img: 'https://wallpaperaccess.com/full/181658.jpg',
+          txt: 'VENICE',
+        }
       },
     }
   }
