@@ -4,11 +4,10 @@ import styled from "styled-components";
 const DataHeaderBox = styled.div`
   width: 100%;
   height: 30px;
-  background-color: white;
   padding: 5px;
 
-  margin-top: 60px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   margin-right: 5px;
   margin-left: 5px;
 
@@ -61,11 +60,13 @@ export default class ChooseboxHead extends Component {
     return (
       <DataHeaderBox>
         <Flexbox1>
-          <Text1>{HeadText.Text1}</Text1>
+          {/* <Text1>{HeadText.Text1}</Text1> */}
+          <Text1>Team</Text1>
         </Flexbox1>
 
         <Flexbox2>
-          <Text2>{HeadText.Text2}</Text2>
+          {/* <Text2>{HeadText.Text2}</Text2> */}
+          <Text2>Members</Text2>
         </Flexbox2>
       </DataHeaderBox>
     );

@@ -1,9 +1,12 @@
 import React, { Component, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
+
 //elements
 import Navbar from '../Components/Nav/layout/Navbar'
 import Memberspage from './Memberspage'
+import MembersBody from '../Components/Memberspage/layout/MembersBody'
+import ContactPage from './ContactPage';
 
 
 
@@ -53,9 +56,15 @@ const SinglePage = () => {
     <Container>
       <Navbar scrollToMyRef={executeScroll} />
       <FieldRow1 ref={myRef1} />
-      <FieldRow2 ref={myRef2} />
-      <FieldRow3 ref={myRef3} />
-      <FieldRow4 ref={myRef4} />
+      <FieldRow2 ref={myRef2} >
+        <Memberspage/>
+      </FieldRow2>
+      <FieldRow3 ref={myRef3}>
+        {/* <MembersBody /> */}
+      </FieldRow3>
+      <FieldRow4 ref={myRef4}>
+        <ContactPage/>
+      </FieldRow4>
     </Container>
   )
 }
