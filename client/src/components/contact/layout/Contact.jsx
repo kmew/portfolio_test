@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import ContactBody from '../elements/Body'
+
 
 const Wrapper = styled.div`
     width: 100%
@@ -24,7 +26,9 @@ class Contact extends Component {
   render() {
     return (
       <Wrapper>
-        <ColoredBox />
+        <ColoredBox>
+          <ContactBody />
+        </ColoredBox>
       </Wrapper>
     )
   }

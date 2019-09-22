@@ -9,16 +9,23 @@ const Wrapper = styled.div`
 
 
 const Box = styled.div`
-    margin-top: 70px;
-    background: rgba(169,169,169,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
-    padding: 10px 20px;
-    border-radius: 10px;
+    height: fit-content;
+    margin-top: 70px;
+    width: fit-content;
 `
 
-const Text = styled.p`
-    font-family: 'Open Sans', sans-serif;
-    font-size: 32px;
+const LogoImage = styled.img`
+    width: 100%;
+    height: 100%;
+    
+    @media (max-width: 425px) {
+      width: 75%;
+      height: 75%;
+    }
 `
 
 
@@ -27,7 +34,7 @@ class Logo extends Component {
     return (
       <Wrapper>
         <Box>
-          <Text>LOGO</Text>
+          <LogoImage src="https://www.freelogodesign.org/file/app/client/thumb/1803f66f-d7c0-425a-83b9-0ee0213b8cba_200x200.png?1568974837896" />
         </Box>
       </Wrapper>
     )
@@ -35,4 +42,3 @@ class Logo extends Component {
 }
 
 export default Logo
-

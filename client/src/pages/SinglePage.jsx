@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Navbar from '../components/nav/layout/Navbar'
 import Home from '../components/home/layout/Home'
+import About from '../components/about/layout/About'
 import Work from '../components/work/layout/Work'
 import Contact from '../components/contact/layout/Contact'
 import Background from '../components/background/elements/Background'
@@ -25,9 +26,13 @@ const HomeBlock = styled.div`
 
 const AboutBlock = styled.div`
   width: 100%;
-  height: 55vh;
+  height: 900px;
   background: #F25F5C;
   position: relative;
+  border: 1px solid purple;
+  @media (max-width: 425px) {
+    height: 1400px;
+  }
 `
 
 const WorkBlock = styled.div`
@@ -42,6 +47,9 @@ const ContactBlock = styled.div`
   width: 100%;
   height: 45vh;
   position: relative;
+  @media (max-width: 425px) {
+    height: 55vh;
+  }
 `
 
 const Space = styled.div`
@@ -49,6 +57,9 @@ const Space = styled.div`
   height: 55vh;
   background: none;
   position: relative;
+  @media (max-width: 425px) {
+    height: 45vh;
+  }
 `
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
@@ -69,7 +80,9 @@ const SinglePage = () => {
         <HomeBlock ref={HomeRef}>
           <Home />
         </HomeBlock>
-        <AboutBlock ref={AboutRef} />
+        <AboutBlock ref={AboutRef}>
+          <About />
+        </AboutBlock>
         <WorkBlock ref={WorkRef}>
           <Work />
         </WorkBlock>

@@ -6,10 +6,12 @@
     "@material-ui/core": "^4.4.2",
     "@material-ui/icons": "^4.4.1",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-social-icons": "^4.1.0",
     "styled-components": "^4.3.2"
   },
   "scripts": {
@@ -33,6 +35,8 @@
       "last 1 safari version"
     ]
   },
+  "main": "index.jsx",
+  "repository": "https://gitlab.com/tissatatc/task3.git",
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
