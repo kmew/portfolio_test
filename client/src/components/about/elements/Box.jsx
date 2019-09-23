@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const TextBox = styled.div`
   width: 100%;
   max-height: 100%;
-  text-align: center;
+  text-align: left;
   margin-top: 20px;
-  border: 1px solid red;
+  font-family: "Open Sans", sans-serif;
 `
 
 class Box extends Component {

@@ -8,20 +8,15 @@ const ButtonFlexDisplay = styled.div`
 `
 
 const ButtonFlexBox = styled.div`
-  width: 50%;
+  width: 100%;
   max-height: 100%;
   text-align: center;
-
-  @media (max-width: 768px) {
-    width: 75%;
-    max-height: fit-content;
-  }
 `
 
 const ButtonFlexBoxDesign = styled.button`
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  width: 90%;
+  width: 45%;
   margin-top: 4px;
   color: black;
   background: rgba(169,169,169,0.5);
