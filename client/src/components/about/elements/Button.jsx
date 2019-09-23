@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Box from './Box'
 
-/* Display Button */
-const ButtonFlexDisplay = styled.div`
-  display: ${(props) => (props.activeButton ? 'flex' : 'none')};
-`
 
 const ButtonFlexBox = styled.div`
   width: 100%;
@@ -28,12 +24,6 @@ const ButtonFlexBoxDesign = styled.button`
   cursor: pointer;
 `
 
-const ButtonToggle = ({ onClick }) => (
-  <button onClick={onClick} type="button">
-    Test
-  </button>
-)
-
 class ToggleButton extends Component {
   constructor(props) {
     super(props)
@@ -53,10 +43,6 @@ class ToggleButton extends Component {
   };
 
   render() {
-    const {
-      handleSpan1,
-    } = this.props
-
     const {
       isShow,
     } = this.state

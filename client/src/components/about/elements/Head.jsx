@@ -52,9 +52,6 @@ const Text2 = styled.p`
 
 export default class ChooseboxHead extends Component {
   render() {
-    const {
-      HeadText,
-    } = this.props
     return (
       <HeadContainer>
         <HeadBox>

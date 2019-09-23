@@ -130,20 +130,20 @@ export default class ContactPage extends Component {
             <IconBox>
               <SocialIcon
                 style={{
-                  margin: '2px',
+                  margin: '4px',
                 }}
                 network="twitter"
               />
               <SocialIcon
                 style={{
-                  margin: '2px',
+                  margin: '4px',
                 }}
                 url="https://www.facebook.com/"
                 network="facebook"
               />
               <SocialIcon
                 style={{
-                  margin: '2px',
+                  margin: '4px',
                 }}
                 url="https://www.instagram.com/"
                 network="instagram"
