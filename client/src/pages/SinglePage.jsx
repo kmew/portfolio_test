@@ -26,13 +26,10 @@ const HomeBlock = styled.div`
 
 const AboutBlock = styled.div`
   width: 100%;
-  height: 900px;
+  height: fit-content;
   background: #F25F5C;
   position: relative;
   border: 1px solid purple;
-  @media (max-width: 425px) {
-    height: 1400px;
-  }
 `
 
 const WorkBlock = styled.div`
@@ -48,7 +45,7 @@ const ContactBlock = styled.div`
   height: 45vh;
   position: relative;
   @media (max-width: 425px) {
-    height: 55vh;
+    height: 60vh;
   }
 `
 
@@ -58,7 +55,7 @@ const Space = styled.div`
   background: none;
   position: relative;
   @media (max-width: 425px) {
-    height: 45vh;
+    height: 40vh;
   }
 `
 

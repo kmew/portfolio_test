@@ -6,23 +6,19 @@ import MembersHead from '../elements/Head'
 import MembersBody from '../elements/Body'
 
 const Body = styled.div`
-  height: 600px;
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: san-serif;
   display: flex
+  align-item: center;
   justify-content: center;
   flex-direction: column;
-  /* border: 1px solid; */
-
-  @media (max-width: 768px) {
-    width: 100%;
-    max-height: 100%;
-  }
 `
 
-const Main = styled.main`
-  margin-top: 0px;
+const Main = styled.div`
+  width: 100%;
+  height: 100%;
 `
 
 // const ChooseEN = {
@@ -101,20 +97,12 @@ class Members extends Component {
     // const BodyText = { Text3, Text4, Text5, Text6, Text7 }
 
     return (
-      <div style={{ height: '100%' }}>
-        <div>
-          {/* <Nav PageName="/Memberspage"/> */}
-
-          <Main>
-            <Body>
-              {/* <MembersHead HeadText={HeadText} />
-              <MembersBody BodyText={BodyText} /> */}
-              <MembersHead />
-              <MembersBody />
-            </Body>
-          </Main>
-        </div>
-      </div>
+      <Main>
+        <Body>
+          <MembersHead />
+          <MembersBody />
+        </Body>
+      </Main>
     )
   }
 }

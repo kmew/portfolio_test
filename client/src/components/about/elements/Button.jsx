@@ -24,7 +24,10 @@ const ButtonFlexBoxDesign = styled.button`
   width: 90%;
   margin-top: 4px;
   color: black;
-  border: 0.5rem solid white;
+  background: rgba(169,169,169,0.5);
+  text-align: center;
+  border: none;
+  border-radius: 5px;
   /* border-radius: 10px; */
   padding: 10px 0px;
   cursor: pointer;

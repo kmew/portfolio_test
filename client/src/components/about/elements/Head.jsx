@@ -5,7 +5,6 @@ const HeadContainer = styled.div`
   width: 100%;
   height: fit-content;
   margin-top: 20px;
-  border: 1px solid blue;
   display: flex;
   align-items: center;
   justify-content: center;

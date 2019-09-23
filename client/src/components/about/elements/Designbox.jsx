@@ -2,25 +2,19 @@ import React, { Component } from 'react'
 
 // LIBs
 import styled from 'styled-components'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import FireplaceIcon from '@material-ui/icons/Fireplace';
 
 // elements
 import MembersButton from './Button'
 
-// setup styled
-const StyledMembersButton = styled(MembersButton)`
-  display: none;
-`
-
 const WrapperContainer = styled.div`
   width: 100%;
-  height: fit-content;
   margin: 30px;
   display: flex;
-  align-items: center;
   justify-content: center;
   @media (max-width: 425px) {
+    align-items: center;
     flex-direction: column;
   }
 `
@@ -29,52 +23,21 @@ const ProfileCard = styled.div`
   width: 35vh;
   height: fit-content;
   border-radius: 7px;
-  border: 2px solid green;
   margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  padding: 50px 20px;
-  background-color: #ffffff;
-  box-shadow: 0.5px 1px 1px 0.5px rgba(0, 0, 0, 0.75),
-    0 3px 10px 0 rgba(0, 0, 0, 0.75);
+  padding: 30px 20px 40px 20px;
+  background-color: #EFEFEF;
 `
 
 const ImgBox = styled.div`
   width: fit-content;
   height: fit-content;
-
   box-sizing: border-box;
-  border: 6px solid #ffffff;
-  top: calc(50% - 150px);
-  left: calc(50% - 150px);
-  /* box-shadow: 0.5px 1px 1px 0.5px rgba(0, 0, 0, 0.75),
-    0 3px 10px 0 rgba(0, 0, 0, 0.75); */
-  background-color: #ffffff;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    width: 150px;
-    max-height: 150px;
-    /* top: calc(50% - 180px);
-    left: calc(50% - 75px); */
-  }
-`
-
-const FlexRectangleRight = styled.div`
-  width: 300px;
-  height: 100px;
-
-  box-sizing: border-box;
-  border: 6px solid #ffffff;
-  /* top: calc(50% - 150px); */
-  /* left: calc(50% - 140px); */
-  /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0), 0 2px 8px 0 rgba(0, 0, 0, 0.75); */
-  background-color: #ffffff;
+  border: none;
+  background-color: none;
 
   display: flex;
   justify-content: center;
@@ -146,9 +109,24 @@ const Box3 = styled.h4`
   }
 `
 
-const Pic = styled.img`
-  height: 150px;
-  width: auto;
+const StyledLocalAtmIcon = styled(LocalAtmIcon) `
+  && {
+    font-size: 150px;
+    color: #50514F;
+    background: #FFE066;
+    @media (max-width: 768px) {
+      font-size: 100px;
+  }
+`
+
+const StyledFireplaceIcon = styled(FireplaceIcon) `
+  && {
+    font-size: 150px;
+    color: #50514F;
+    background: #FFE066;
+    @media (max-width: 768px) {
+      font-size: 100px;
+  }
 `
 
 // Main Function
@@ -190,7 +168,8 @@ export default class ChooseDesignbox extends Component {
       <WrapperContainer>
         <ProfileCard>
           <ImgBox>
-            <Pic src="https://www.pnglot.com/pngfile/detail/493-4930333_user-icon-my-profile-icon-png.png" />
+            {/* <Pic src="https://www.pnglot.com/pngfile/detail/493-4930333_user-icon-my-profile-icon-png.png" /> */}
+            <StyledLocalAtmIcon />
           </ImgBox>
           <Box1>Mootam</Box1>
           <Box2>MR. Tantikorn Phuprasurt</Box2>
@@ -200,10 +179,10 @@ export default class ChooseDesignbox extends Component {
 
         <ProfileCard>
           <ImgBox>
-            <Pic src="https://www.pnglot.com/pngfile/detail/493-4930333_user-icon-my-profile-icon-png.png" />
+            <StyledFireplaceIcon />
           </ImgBox>
           <Box1>PD</Box1>
-          <Box2>MR. TISSATAT CHAROENCHAI</Box2>
+          <Box2>MR. Tissatat Charoenchai</Box2>
           <Box3>Fullstack Developer</Box3>
           <MembersButton />
         </ProfileCard>
