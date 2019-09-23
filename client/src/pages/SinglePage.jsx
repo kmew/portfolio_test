@@ -42,20 +42,20 @@ const WorkBlock = styled.div`
 
 const ContactBlock = styled.div`
   width: 100%;
-  height: 45vh;
+  height: 55vh;
   position: relative;
   @media (max-width: 425px) {
-    height: 60vh;
+    height: 65vh;
   }
 `
 
 const Space = styled.div`
   width: 100%;
-  height: 55vh;
+  height: 45vh;
   background: none;
   position: relative;
   @media (max-width: 425px) {
-    height: 40vh;
+    height: 35vh;
   }
 `
 

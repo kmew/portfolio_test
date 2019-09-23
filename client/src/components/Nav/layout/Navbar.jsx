@@ -28,7 +28,9 @@ const SideNav = styled.div`
     border: 3px solid #50514F;
     opacity: 50%;
     display: flex;
+    align-items: center;
     flex-direction: column;
+    justify-content: center;
     border-radius: 7px;
     @media (max-width: 1024px) {
       width: ${(props) => (props.open ? '160px' : '80px')};
@@ -39,8 +41,8 @@ const SideNav = styled.div`
       height: 370px;
     }
     @media (max-width: 425px) {
-      width: ${(props) => (props.open ? '100px' : '50px')};
-      height: 235px;
+      width: ${(props) => (props.open ? '75px' : '65px')};
+      height: 280px;
     }
 `
 
@@ -50,9 +52,14 @@ const NavList = styled.p`
     font-size: 18px;
     font-weight: 700;
     color: #247BA0;
-    text-align: center;
     padding: 5px;
     line-height: 1.6;
+    border-radius: 7px;
+    width: fit-parent;
+    height: fit-parent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 
@@ -60,14 +67,14 @@ const MenuBox = styled.div`
     width: ${(props) => (props.open ? '150px' : '65px')};
     height: 65px;
     cursor: pointer;
-    padding: 20px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
     background: #50514F;
     margin: 5px;
-    :hover {
-        background: none;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
     :hover ${NavList} {
-        background: #50514F;
+        background: #7F807F;
     }
     @media (max-width: 1024px) {
       width: ${(props) => (props.open ? '120px' : '60px')};
@@ -81,9 +88,9 @@ const MenuBox = styled.div`
       margin: 3px;
     }
     @media (max-width: 425px) {
-      width: ${(props) => (props.open ? '60px' : '36px')};
-      height: 36px;
-      padding: 2px 6px 5px 4px;
+      width: ${(props) => (props.open ? '60px' : '50px')};
+      height: fit-content;
+      padding: 5px 4px;
       margin: 2px;
     }
 `
