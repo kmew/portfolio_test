@@ -14,7 +14,4 @@ router.route('/').get( async (erq, res) => {
     }
 })
 
-router.route('/:id').get((erq, res) => {
-})
-
 module.exports = router
