@@ -5,51 +5,73 @@ let Chip = require('../../../chip.model');
 const router = express.Router()
 
 
-
+// read all
 router.route('/').get( async (req, res) => {
+    console.log("Read all: ", req.body);
     try {
         const result = await Chip.find()
         res.json({ result })
     } catch (error) {
-        console.log('Error at getChip api', error)
-        return res.status(500).json({ error: error.message })
+        console.log('Error at read all Chip api', error)
+        return res.json({ error: error.message })
     }
 })
 
 
+// read one
 router.route('/:id').get( async (req, res) => {
+    console.log("Read one: ", req.body);
     try {
         const id = req.params.id
         const result = await Chip.findByID(id)
         res.json({ result })
     } catch(error) {
-        console.log('Error at getChipId api', error)
-        res.status(500).json({ error: error.message })
+        console.log('Error at read one Chip api', error)
+        res.json({ error: error.message })
     }
 })
 
 
+// update
 router.route('/:id').put( async (req, res) => {
+    console.log("Update: ", req.body);
     try {
         const id = req.params.id
         console.log(id);
         const result = await Chip.findByIdAndUpdate(id, req.body)
         res.json({ result })
     } catch(error) {
-        console.log('Error at updateChip api', error)
-        res.status(500).json({ error: error.message })
+        console.log('Error at update Chip api', error)
+        res.json({ error: error.message })
     }
 })
 
 
+// add
 router.route('/').post( async (req, res) => {
-    console.log("Adding: ", req.body);
+    console.log("Add: ", req.body);
     try {
-        const chipping = new Chip(req.body)
-        await chipping.save()
-        res.status(200).json({'chipping': 'chip added successfully'})
+        const chipAdding = new Chip(req.body)
+        await chipAdding.save()
+        res.json({ result })
     } catch(error) {
-        res.status(400).send('adding new chip failed');
+        console.log('Error at add Chip api', error)
+        res.json({ error: error.message })
+    }
+})
+
+
+// delete
+router.route('/:id').delete( async (req, res) => {
+    console.log("Delete all: ", req.body);
+    try{
+        const id = req.params.id
+        console.log(id);
+        const result = await Chip.findByIdAndRemove(id, req.body)
+        res.json({ result })
+    } catch(error) {
+        console.log('Error at delete Chip api', error)
+        res.json({ error: error.message })
     }
 })
 

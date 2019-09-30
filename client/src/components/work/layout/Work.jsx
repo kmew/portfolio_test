@@ -93,6 +93,17 @@ class Work extends Component {
     })
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:4000/admin/chip/')
+      .then(res => {
+        // this.setState({ chipList: res.data })
+      })
+    axios.get('http://localhost:4000/admin/gallery/')
+      .then(res => {
+        // this.setState({ imgList: res.data })
+      })
+  }
+
   render() {
     const {
       anchorEl,
