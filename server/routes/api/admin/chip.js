@@ -52,7 +52,7 @@ router.route('/').post( async (req, res) => {
     console.log("Add: ", req.body);
     try {
         const chipAdding = new Chip(req.body)
-        await chipAdding.save()
+        const result = await chipAdding.save()
         res.json({ result })
     } catch(error) {
         console.log('Error at add Chip api', error)

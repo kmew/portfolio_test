@@ -52,7 +52,7 @@ router.route('/').post( async (req, res) => {
     console.log("Add: ", req.body);
     try {
         const galleryAdding = new Gallery(req.body)
-        await galleryAdding.save()
+        const result = await galleryAdding.save()
         res.json({ result })
     } catch(error) {
         console.log('Error at add Gallery api', error)

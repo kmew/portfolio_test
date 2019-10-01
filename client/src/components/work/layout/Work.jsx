@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 import Head from '../elements/Head'
 import ChipList from '../elements/ChipList'
@@ -94,13 +95,14 @@ class Work extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/admin/chip/')
+    axios.get('http://localhost:4000/user/gallery/')
       .then(res => {
-        // this.setState({ chipList: res.data })
-      })
-    axios.get('http://localhost:4000/admin/gallery/')
-      .then(res => {
-        // this.setState({ imgList: res.data })
+        // console.log(`${res.data}`)
+        Object.entries(res.data.result).forEach(([key, value]) => {
+          console.log("TXT: ", value.txt)
+          console.log("IMG: ", value.img)
+          console.log(" ")
+        })
       })
   }
 
