@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 
-import Navbar from '../components/nav/layout/Navbar'
+import Navbar from '../components/Nav/layout/Navbar'
 import Home from '../components/home/layout/Home'
 import About from '../components/about/layout/About'
 import Work from '../components/work/layout/Work'
