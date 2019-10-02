@@ -35,36 +35,13 @@ class Work extends Component {
       anchorEl: null,
       open: false,
       smileColor: '#247BA0',
-      chipList: {
-        chip1: 'REACT',
-        chip2: 'MERN',
-        chip3: 'FRONT-END',
-        chip4: 'STYLED-COMPONENT',
-        chip5: 'RESPONSIVE',
-        chip6: '# INIT',
-      },
-      imgList: {
-        card1: {
-          img: 'https://wallpaperaccess.com/full/335893.jpg',
-          txt: 'ROCKET',
-        },
-        card2: {
-          img: 'https://wallpaperaccess.com/full/336022.jpg',
-          txt: 'TROPICAL',
-        },
-        card3: {
-          img: 'https://wallpaperaccess.com/full/336023.jpg',
-          txt: 'METRO',
-        },
-        card4: {
-          img: 'https://wallpaperaccess.com/full/335910.jpg',
-          txt: 'CAVE',
-        },
-        card5: {
-          img: 'https://wallpaperaccess.com/full/181658.jpg',
-          txt: 'VENICE',
-        },
-      },
+      chipList: [{
+        label: null,
+      }],
+      imgList: [{
+        txt: null,
+        img: null,
+      }],
     }
   }
 
@@ -94,16 +71,37 @@ class Work extends Component {
     })
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:4000/user/gallery/')
-      .then(res => {
-        // console.log(`${res.data}`)
-        Object.entries(res.data.result).forEach(([key, value]) => {
-          console.log("TXT: ", value.txt)
-          console.log("IMG: ", value.img)
-          console.log(" ")
-        })
+  async componentDidMount() {
+    const imgTmpArray = []
+    const chipTmpArray = []
+    try {
+      const res = await axios.get('http://localhost:4000/user/gallery/')
+      Object.entries(res.data.result).forEach(([key, value]) => {
+        imgTmpArray.push( value )
       })
+      this.setState({
+        imgList: imgTmpArray,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+
+    try {
+      const res = await axios.get('http://localhost:4000/user/chip/')
+      console.log(res.data.result)
+        
+      Object.entries(res.data.result).forEach(([key, value]) => {
+        console.log("LABEL: ", value.label)
+        chipTmpArray.push( value )
+      })
+      this.setState({
+        chipList: chipTmpArray,
+      })
+      console.log()
+      console.log(this.state.chipList)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {

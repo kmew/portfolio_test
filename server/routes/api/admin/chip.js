@@ -10,7 +10,12 @@ router.route('/').get( async (req, res) => {
     console.log("Read all: ", req.body);
     try {
         const result = await Chip.find()
-        res.json({ result })
+        const output = result.map(({ _id, label }) => ({
+            _id,
+            label,
+        }))
+        console.log(result)
+        res.json({ result: output })
     } catch (error) {
         console.log('Error at read all Chip api', error)
         return res.json({ error: error.message })

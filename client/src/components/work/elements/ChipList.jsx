@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Chip from '@material-ui/core/Chip'
 import Popover from '@material-ui/core/Popover'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
-import CodeIcon from '@material-ui/icons/Code'
+import Icon from '@material-ui/core/Icon'
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions'
 
 const Wrapper = styled.div`
@@ -49,12 +49,14 @@ class ChipList extends Component {
         <Chip
           key={key}
           style={{ margin: '5px' }}
-          icon={<CodeIcon style={{ color: '#70C1B3' }} />}
-          label={value}
+          // icon={<CodeIcon style={{ color: '#70C1B3' }} />}
+          icon={<Icon style={{ color: '#70C1B3' }} >{value.icon1}</Icon>}
+          label={value.label}
           clickable
           color="#247BA0"
           onDelete={handlePopClick}
-          deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
+          // deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
+          deleteIcon={<Icon style={{ color: '#FFA69E' }} >add_circle_outline</Icon>}
         />
       )
     })

@@ -10,7 +10,13 @@ router.route('/').get( async (req, res) => {
     console.log("Read all: ", req.body);
     try {
         const result = await Gallery.find()
-        res.json({ result })
+        const output = result.map(({ _id, txt, img }) => ({
+            _id,
+            txt,
+            img
+        }))
+        console.log(result)
+        res.json({ result: output })
     } catch (error) {
         console.log('Error at read all Gallery api', error)
         return res.json({ error: error.message })

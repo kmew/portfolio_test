@@ -5,10 +5,16 @@ let ChipSchema = new Schema({
     label: {
         type: String
     },
-    // icon: {
+    icon1: {
+        type: String
+    },
+    // color1: {
     //     type: String
     // },
-    // color: {
+    // icon2: {
+    //     type: String
+    // },
+    // color2: {
     //     type: String
     // },
 })
