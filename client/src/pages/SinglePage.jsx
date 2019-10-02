@@ -70,7 +70,7 @@ const SinglePage = () => {
   const NavRef = { HomeRef, AboutRef, WorkRef, ContactRef }
 
   return (
-    <Container>
+    <Container>x
       <Navbar scrollToRef={scrollToRef} NavRef={NavRef} />
       <Background />
       <Content>
