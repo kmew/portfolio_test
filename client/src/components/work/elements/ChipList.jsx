@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import Chip from '@material-ui/core/Chip'
 import Popover from '@material-ui/core/Popover'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import Icon from '@material-ui/core/Icon'
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions'
 
@@ -43,28 +42,23 @@ class ChipList extends Component {
 
     const open = Boolean(anchorEl)
 
-    const chipArray = []
-    Object.entries(chipList).forEach(([key, value]) => {
-      chipArray.push(
-        <Chip
-          key={key}
-          style={{ margin: '5px' }}
-          // icon={<CodeIcon style={{ color: '#70C1B3' }} />}
-          icon={<Icon style={{ color: '#70C1B3' }} >{value.icon1}</Icon>}
-          label={value.label}
-          clickable
-          color="#247BA0"
-          onDelete={handlePopClick}
-          // deleteIcon={<AddCircleOutlineIcon style={{ color: '#FFA69E' }} />}
-          deleteIcon={<Icon style={{ color: '#FFA69E' }} >add_circle_outline</Icon>}
-        />
-      )
-    })
-
     return (
       <Wrapper>
         <ChipBox>
-          {chipArray}
+          {
+            chipList.map((aChip) => (
+              <Chip
+                key={aChip.label}
+                style={{ margin: '5px' }}
+                icon={<Icon style={{ color: '#70C1B3' }} >{aChip.icon1}</Icon>}
+                label={aChip.label}
+                clickable
+                color="#247BA0"
+                onDelete={handlePopClick}
+                deleteIcon={<Icon style={{ color: '#FFA69E' }} >add_circle_outline</Icon>}
+              />
+            ))
+          }
           <Popover
             open={open}
             anchorEl={anchorEl}

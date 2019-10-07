@@ -34,14 +34,9 @@ class Work extends Component {
     this.state = {
       anchorEl: null,
       open: false,
-      smileColor: '#247BA0',
-      chipList: [{
-        label: null,
-      }],
-      imgList: [{
-        txt: null,
-        img: null,
-      }],
+      smileColor: "#247BA0",
+      chipList: [{}],
+      imgList: [{}],
     }
   }
 
@@ -72,33 +67,22 @@ class Work extends Component {
   }
 
   async componentDidMount() {
-    const imgTmpArray = []
-    const chipTmpArray = []
     try {
       const res = await axios.get('http://localhost:4000/user/gallery/')
-      Object.entries(res.data.result).forEach(([key, value]) => {
-        imgTmpArray.push( value )
-      })
       this.setState({
-        imgList: imgTmpArray,
+        imgList: (res.data.result)
       })
+      // console.log(this.state.imgList)
     } catch (error) {
       console.log(error)
     }
 
     try {
       const res = await axios.get('http://localhost:4000/user/chip/')
-      console.log(res.data.result)
-        
-      Object.entries(res.data.result).forEach(([key, value]) => {
-        console.log("LABEL: ", value.label)
-        chipTmpArray.push( value )
-      })
       this.setState({
-        chipList: chipTmpArray,
+        chipList: (res.data.result)
       })
-      console.log()
-      console.log(this.state.chipList)
+      // console.log(this.state.chipList)
     } catch (error) {
       console.log(error)
     }

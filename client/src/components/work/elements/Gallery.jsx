@@ -116,23 +116,20 @@ class Gallery extends Component {
       handleModalClose,
     } = this.props
 
-    const imgArray = []
-    Object.entries(imgList).forEach(([key, value]) => {
-      imgArray.push(
-        <ImgBox>
-          <Overlay>
-            <OverlayText>{value.txt}</OverlayText>
-            <OverlayButton onClick={handleModalOpen}>LINK</OverlayButton>
-          </Overlay>
-          <Img src={value.img} alt={key} />
-        </ImgBox>
-      )
-    })
-
     return (
       <Wrapper>
         <GalleryBox>
-          {imgArray}
+          {
+            imgList.map((aImg) => (
+              <ImgBox>
+                <Overlay>
+                  <OverlayText>{aImg.txt}</OverlayText>
+                  <OverlayButton onClick={handleModalOpen}>LINK</OverlayButton>
+                </Overlay>
+                <Img src={aImg.img} alt={aImg.txt} />
+              </ImgBox>
+            ))
+          }
           <Modal
             style={{
               display: 'flex',
