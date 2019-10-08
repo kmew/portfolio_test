@@ -10,9 +10,10 @@ router.route('/').get( async (req, res) => {
     console.log("Read all: ", req.body);
     try {
         const result = await Chip.find()
-        const output = result.map(({ _id, label }) => ({
+        const output = result.map(({ _id, label, icon1 }) => ({
             _id,
             label,
+            icon1,
         }))
         console.log(result)
         res.json({ result: output })
