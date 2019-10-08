@@ -176,24 +176,23 @@ class Admin extends Component {
             BODY,
         } = this.state
 
+        const res = null
+
         if (DB !== null) {
             if (API !== null) {
                 try {
                     switch(API) {
                         case "ADD":
-                            console.log(`ADD ${DB}`)
-                            axios.post(`http://localhost:4000/admin/${DB}/`, JSON.parse(BODY))
+                            res = axios.post(`http://localhost:4000/admin/${DB}/`, JSON.parse(BODY))
                             break;
                         case "EDIT":
-                            console.log(`EDIT ${DB}`)
-                            console.log(`ID ${ID}`)
-                            axios.put(`http://localhost:4000/admin/${DB}/${ID}`, JSON.parse(BODY))
+                            res = axios.put(`http://localhost:4000/admin/${DB}/${ID}`, JSON.parse(BODY))
                             break;
                         case "DELETE":
-                            console.log(`DELETE ${DB}`)
-                            axios.delete(`http://localhost:4000/admin/${DB}/${ID}`)
+                            res = axios.delete(`http://localhost:4000/admin/${DB}/${ID}`)
                             break;
                     }
+                    console.log(res)
                 } catch (error) {
                     console.log(error)
                 }
