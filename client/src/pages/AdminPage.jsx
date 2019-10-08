@@ -77,6 +77,7 @@ const StyledInput = styled.input`
     border: none;
     padding: 3px;
     margin: 5px 0px;
+    width: 300px;
     background: white;
     font-size: 18px;
     font-family: "Open Sans", sans-serif;
@@ -181,15 +182,16 @@ class Admin extends Component {
                     switch(API) {
                         case "ADD":
                             console.log(`ADD ${DB}`)
-                            // axios.post(`http://localhost:4000/admin/${DB}/`)
+                            axios.post(`http://localhost:4000/admin/${DB}/`, JSON.parse(BODY))
                             break;
                         case "EDIT":
                             console.log(`EDIT ${DB}`)
-                            // axios.put(`http://localhost:4000/admin/${DB}/`)
+                            console.log(`ID ${ID}`)
+                            axios.put(`http://localhost:4000/admin/${DB}/${ID}`, JSON.parse(BODY))
                             break;
                         case "DELETE":
                             console.log(`DELETE ${DB}`)
-                            // axios.delete(`http://localhost:4000/admin/${DB}/`)
+                            axios.delete(`http://localhost:4000/admin/${DB}/${ID}`)
                             break;
                     }
                 } catch (error) {
