@@ -117,12 +117,16 @@ class Admin extends Component {
     }
 
     async componentDidMount() {
+        this.fetchData()
+    }
+
+    fetchData = async () => {
         try {
             const res = await axios.get('http://localhost:4000/admin/gallery/')
             this.setState({
-            imgList: (res.data.result)
+                imgList: (res.data.result)
             })
-            // console.log(this.state.imgList)
+            console.log(res.data.result)
         } catch (error) {
             console.log(error)
         }
@@ -168,7 +172,7 @@ class Admin extends Component {
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = async () => {
         const {
             DB,
             API,
@@ -176,28 +180,31 @@ class Admin extends Component {
             BODY,
         } = this.state
 
-        const res = null
+        let res = null
 
         if (DB !== null) {
             if (API !== null) {
                 try {
                     switch(API) {
                         case "ADD":
-                            res = axios.post(`http://localhost:4000/admin/${DB}/`, JSON.parse(BODY))
-                            break;
+                            res = await axios.post(`http://localhost:4000/admin/${DB}/`, JSON.parse(BODY))
+                            break
                         case "EDIT":
-                            res = axios.put(`http://localhost:4000/admin/${DB}/${ID}`, JSON.parse(BODY))
-                            break;
+                            res = await axios.put(`http://localhost:4000/admin/${DB}/${ID}`, JSON.parse(BODY))
+                            break
                         case "DELETE":
-                            res = axios.delete(`http://localhost:4000/admin/${DB}/${ID}`)
-                            break;
+                            res = await axios.delete(`http://localhost:4000/admin/${DB}/${ID}`)
+                            break
+                        default:
+                            break
                     }
                     console.log(res)
+                    this.fetchData()
                 } catch (error) {
                     console.log(error)
                 }
             } else {
-                console.log("CHOOSE API")
+                console.log("MUST CHOOSE API")
             }
         } else {
             console.log("CHOOSE DB");
