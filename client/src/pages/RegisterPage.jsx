@@ -30,21 +30,13 @@ class Register extends Component {
         return (
             <Container>
                 <HeadF>Register</HeadF>
-                <form action="/register" method="POST">
+                <form action="/routes/api/auth/regist" method="POST">
                     <Box>
                         <LabelF>NAME</LabelF>
                         <StyledInput
                             type="text"
-                            id="name"
-                            name="name"
-                        />
-                    </Box>
-                    <Box>
-                        <LabelF>EMAIL</LabelF>
-                        <StyledInput
-                            type="text"
-                            id="email"
-                            name="email"
+                            id="username"
+                            name="username"
                         />
                     </Box>
                     <Box>

@@ -30,7 +30,7 @@ class Login extends Component {
         return (
             <Container>
                 <HeadF>Login</HeadF>
-                <form action="/login" method="POST">
+                <form action="/routes/api/auth/login" method="POST">
                     <Box>
                         <LabelF>EMAIL</LabelF>
                         <StyledInput

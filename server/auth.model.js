@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-node.js')
 const Schema = mongoose.Schema;
 
 let AuthSchema = new Schema({
-    email: {
+    username: {
         type: String,
         required:true,
     },
@@ -14,12 +14,29 @@ let AuthSchema = new Schema({
     },
 })
 
-AuthSchema.methods.hashPassword = function (password) {
-    return bcrypt.hashSync(password,bcrypt.genSaltSync(10))
+module.exports.createUser = function(newUser, callback) {
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(newUser.password, salt, function(err, hash) {
+             newUser.password = hash
+             newUser.save(callback)
+        })
+    })
 }
 
-AuthSchema.methods.comaprePassword = function (password,hash) {
-    return bcrypt.comapreSync(password,hash)
+module.exports.getUserByUsername = function(username, callback) {
+    const query = { username: username }
+    username.findOne(query, callback)
+}
+
+module.exports.getUserById = function(id, callback) {
+    username.findById(id, callback)
+}
+
+module.exports.comparePassword = function(candidatePassword, hash, callback) {
+    bcrypt.compare(candidatePassword, hash, function(err, res) {
+        if(err) throw err
+        callback(null, isMatch)
+    })
 }
 
 module.exports = mongoose.model('AuthSchema', AuthSchema)
