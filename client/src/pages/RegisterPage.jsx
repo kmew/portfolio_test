@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const Container = styled.div`
 `
 
 const Box = styled.div`
+    margin: 5px;
 `
 
 const HeadF = styled.p`
@@ -18,37 +20,77 @@ const LabelF = styled.label`
 `
 
 const StyledInput = styled.input`
+    margin: 5px;
     font-family: "Open Sans", sans-serif;
+    border: 1px solid;
+    border-radius: 5px;
 `
 
 const StyledButton = styled.button`
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background: DarkSlateBlue;
+    color: white;
 `
 
 class Register extends Component {
-    state = {  }
+    constructor(props) {
+      super(props)
+      this.state = {
+          username: null,
+          password: null,
+      }
+    }
+
+    handleSubmit = async () => {
+        const {
+            username,
+            password,
+        } = this.state
+        console.log('username ' + username)
+        console.log('password ' + password)
+        try {
+            const res = await axios.post('http://localhost:4000/auth/regist/', {
+                                                                                username: username,
+                                                                                password: password})
+            console.log(res.data)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
     render() { 
         return (
             <Container>
                 <HeadF>Register</HeadF>
-                <form action="/routes/api/auth/regist" method="POST">
-                    <Box>
-                        <LabelF>NAME</LabelF>
-                        <StyledInput
-                            type="text"
-                            id="username"
-                            name="username"
-                        />
-                    </Box>
-                    <Box>
-                        <LabelF>password</LabelF>
-                        <StyledInput
-                            type="text"
-                            id="password"
-                            name="password"
-                        />
-                    </Box>
-                    <StyledButton type="submit">Register</StyledButton>
-                </form>
+                <Box>
+                    <LabelF>username</LabelF>
+                    <StyledInput
+                        type="text"
+                        id="username"
+                        name="username"
+                        onChange={this.handleChange}
+                    />
+                </Box>
+                <Box>
+                    <LabelF>password</LabelF>
+                    <StyledInput
+                        type="text"
+                        id="password"
+                        name="password"
+                        onChange={this.handleChange}
+                    />
+                </Box>
+                <StyledButton type="submit" onClick={this.handleSubmit}>Register</StyledButton>
+                < br/>
                 <a href="/Login">Login</a>
             </Container>
         )
