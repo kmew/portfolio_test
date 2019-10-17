@@ -9,8 +9,20 @@ const Box = styled.div`
     margin: 5px;
 `
 
+const DialogBox = styled.div`
+    border-top: 1px solid;
+    padding-top: 5px;
+    margin: 5px;
+`
+
 const HeadF = styled.p`
     font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+`
+
+const Dialog = styled.p`
+    font-size: 10px;
+    color: red;
     font-family: "Open Sans", sans-serif;
 `
 
@@ -41,6 +53,8 @@ class Login extends Component {
       this.state = {
           username: null,
           password: null,
+          status: false,
+          msg: null,
       }
     }
 
@@ -53,9 +67,18 @@ class Login extends Component {
         console.log('password ' + this.state.password)
         try {
             const res = await axios.post('http://localhost:4000/auth/login/', {
-                                                                                username: {username},
-                                                                                password: {password}})
-            console.log(res.data)
+                                                                                username: username,
+                                                                                password: password})
+            if(res.data === "Success") {
+                window.location.href='http://localhost:3000/Admin'
+                this.setState({status: false})
+            } else {
+                console.log(res.data)
+                this.setState({
+                    status: true,
+                    msg: res.data,
+                })
+            }
         } catch(error) {
             console.log(error)
         }
@@ -67,7 +90,11 @@ class Login extends Component {
         })
     }
 
-    render() { 
+    render() {
+        const {
+            status,
+            msg,
+        } = this.state
         return (
             <Container>
                 <HeadF>Login</HeadF>
@@ -92,6 +119,9 @@ class Login extends Component {
                 <StyledButton type="submit" onClick={this.handleSubmit} >Login</StyledButton>
                 < br/>
                 <a href="/Register">Register</a>
+                {(status)&&<DialogBox>
+                    <Dialog>{msg}</Dialog>
+                </DialogBox>}
             </Container>
         )
     }

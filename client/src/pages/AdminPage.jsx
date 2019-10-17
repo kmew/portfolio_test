@@ -309,6 +309,10 @@ class Admin extends Component {
                             </StyledTable>
                         </div>}
                     </Box>
+                    <div>
+                        <StyledLine />
+                        <a href='http://localhost:3000/' >BACK TO MAIN PAGE</a>
+                    </div>
                 </Container>
             </Background>
         )

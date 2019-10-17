@@ -18,7 +18,12 @@ router.route('/').post( async (req, res) => {
     })
 
     User.createUser(newUser, function(err, user) {
-        if(err) throw err
+        if(err) {
+            res.send('Fail')
+            throw err
+        } else {
+            res.send('Success')
+        }
         console.log(user)
     })
 

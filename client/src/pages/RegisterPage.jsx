@@ -9,8 +9,18 @@ const Box = styled.div`
     margin: 5px;
 `
 
+const DialogBox = styled.div`
+    margin: 1px solid;
+    margin: 5px;
+`
+
 const HeadF = styled.p`
     font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+`
+
+const Dialog = styled.p`
+    font-size: 14px;
     font-family: "Open Sans", sans-serif;
 `
 
@@ -55,7 +65,13 @@ class Register extends Component {
             const res = await axios.post('http://localhost:4000/auth/regist/', {
                                                                                 username: username,
                                                                                 password: password})
-            console.log(res.data)
+            if(res.data === "Success") {
+                window.location.href='http://localhost:3000/Login'
+                this.setState({status: false})
+            } else {
+                this.setState({status: true})
+                console.log(res.data)
+            }
         } catch(error) {
             console.log(error)
         }
@@ -67,7 +83,10 @@ class Register extends Component {
         })
     }
 
-    render() { 
+    render() {
+        const {
+            status,
+        } = this.state
         return (
             <Container>
                 <HeadF>Register</HeadF>
@@ -92,6 +111,9 @@ class Register extends Component {
                 <StyledButton type="submit" onClick={this.handleSubmit}>Register</StyledButton>
                 < br/>
                 <a href="/Login">Login</a>
+                {(status)&&<DialogBox>
+                    <Dialog>FAIL TO REGISTER</Dialog>
+                </DialogBox>}
             </Container>
         )
     }
