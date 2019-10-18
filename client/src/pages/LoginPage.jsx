@@ -39,6 +39,7 @@ const StyledInput = styled.input`
 `
 
 const StyledButton = styled.button`
+    cursor: pointer;
     margin: 5px;
     padding: 5px;
     border: none;
@@ -55,7 +56,35 @@ class Login extends Component {
           password: null,
           status: false,
           msg: null,
+          isLoading: true,
       }
+    }
+
+    componentDidMount() {
+        const cookie = this.getCookie("username")
+        if(cookie!=="") {
+            window.location.href='http://localhost:3000/Admin'
+        } else {
+            this.setState({
+                isLoading: false
+            })
+        }
+    }
+
+    getCookie = (cname) => {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length)
+          }
+        }
+        return ""
     }
 
     handleSubmit = async () => {
@@ -70,6 +99,7 @@ class Login extends Component {
                                                                                 username: username,
                                                                                 password: password})
             if(res.data === "Success") {
+                document.cookie = `username=${username}`
                 window.location.href='http://localhost:3000/Admin'
                 this.setState({status: false})
             } else {
@@ -94,9 +124,11 @@ class Login extends Component {
         const {
             status,
             msg,
+            isLoading,
         } = this.state
-        return (
-            <Container>
+
+        const DoneLoading = (
+            <>
                 <HeadF>Login</HeadF>
                 <Box>
                     <LabelF>username</LabelF>
@@ -119,9 +151,24 @@ class Login extends Component {
                 <StyledButton type="submit" onClick={this.handleSubmit} >Login</StyledButton>
                 < br/>
                 <a href="/Register">Register</a>
+                <br />
+                <a href="/">Back</a>
                 {(status)&&<DialogBox>
                     <Dialog>{msg}</Dialog>
                 </DialogBox>}
+            </>
+        )
+    
+        const StillLoading = (
+            <>
+                <Dialog>LOADING...</Dialog>
+            </>
+        )
+
+        return (
+            <Container>
+                {(isLoading&&StillLoading)}
+                {(!isLoading&&DoneLoading)}
             </Container>
         )
     }

@@ -51,7 +51,16 @@ const DbName = styled.p`
     text-decoration: underline;
 `
 
+const StyledLink = styled.p`
+    cursor: pointer;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    text-decoration: underline;
+    color: blue;
+`
+
 const StyledSelect = styled.select`
+    cursor: pointer;
     background: rgba(169,169,169,0.5);
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
@@ -95,6 +104,7 @@ const StyledField = styled.textarea`
 `
 
 const StyledButton = styled.button`
+    cursor: pointer;
     border: none;
     margin: 5px 0px;
     padding: 3px;
@@ -113,11 +123,22 @@ class Admin extends Component {
             BODY: null,
             chipList: [{}],
             imgList: [{}],
+            haveCookie: false,
+            isLoading: true,
         }
     }
 
     async componentDidMount() {
         this.fetchData()
+        const cookie = this.getCookie("username")
+        if(cookie!=="") {
+            this.setState({
+                haveCookie: true
+            })
+        }
+        this.setState({
+            isLoading: false
+        })
     }
 
     fetchData = async () => {
@@ -126,7 +147,6 @@ class Admin extends Component {
             this.setState({
                 imgList: (res.data.result)
             })
-            console.log(res.data.result)
         } catch (error) {
             console.log(error)
         }
@@ -136,10 +156,25 @@ class Admin extends Component {
             this.setState({
               chipList: (res.data.result)
             })
-            // console.log(this.state.chipList)
           } catch (error) {
             console.log(error)
           }
+    }
+
+    getCookie = (cname) => {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length)
+          }
+        }
+        return ""
     }
 
     handleSelectDB = (e) => {
@@ -211,6 +246,15 @@ class Admin extends Component {
         }
     }
 
+    handleGoBack = () => {
+        document.cookie = `username=`;
+        window.location.href='http://localhost:3000/'
+    }
+
+    handleGoLogin = () => {
+        window.location.href='http://localhost:3000/Login'
+    }
+
     render() {
         const {
             DB,
@@ -219,7 +263,108 @@ class Admin extends Component {
             BODY,
             chipList,
             imgList,
+            haveCookie,
+            isLoading,
         } = this.state
+
+        const DoneLogin = (
+            <>
+                <Box>
+                    <Head>DB</Head>
+                    <StyledSelect onChange={this.handleSelectDB}>
+                        <option disabled selected>Select...</option>
+                        <option>Chip</option>
+                        <option>Gallery</option>
+                    </StyledSelect>
+                </Box>
+                <Box>
+                    <Head>API</Head>
+                    <StyledSelect onChange={this.handleSelectAPI}>
+                        <option disabled selected>Select...</option>
+                        <option>ADD</option>
+                        <option>EDIT</option>
+                        <option>DELETE</option>
+                    </StyledSelect>
+                </Box>
+                {(API !== "ADD") && <Box>
+                    <Head>ID</Head>
+                    <StyledInput placeholder="ID..." onChange={this.handleFormID} value={ID} />
+                </Box>}
+                {(API !== "DELETE") && <Box>
+                    <Head>BODY</Head>
+                    <StyledField placeholder="Insert JSON BODY..." onChange={this.handleFormBODY} value={BODY} />
+                </Box>}
+                <Box>
+                    <StyledButton onClick={this.handleSubmit}>SUBMIT</StyledButton>
+                </Box>
+                <Box>
+                    <StyledLine />
+                    <Head>DATA</Head>
+                    {(DB === "Chip") && <div>
+                        <DbName>CHIP</DbName>
+                        <StyledTable>
+                            <tr>
+                                <BoxHead><Body>LABEL</Body></BoxHead>
+                                <BoxHead><Body>ICON</Body></BoxHead>
+                                <BoxHead><Body>ID</Body></BoxHead>
+                            </tr>
+                            {
+                                chipList.map((aChip) => (
+                                    <tr>
+                                        <BoxData>
+                                            <Body>{aChip.label}</Body>
+                                        </BoxData>
+                                        <BoxData>
+                                            <Body>{aChip.icon1}</Body>
+                                        </BoxData>
+                                        <BoxData>
+                                            <Body>{aChip._id}</Body>
+                                        </BoxData>
+                                    </tr>
+                                ))
+                            }
+                        </StyledTable>
+                    </div>}
+                    {(DB === "Gallery") && <div>
+                        <DbName>GALLERY</DbName>
+                        <StyledTable>
+                            <tr>
+                                <BoxHead><Body>TEXT</Body></BoxHead>
+                                <BoxHead><Body>URL</Body></BoxHead>
+                                <BoxHead><Body>ID</Body></BoxHead>
+                            </tr>
+                            {
+                                    imgList.map((aImg) => (
+                                        <tr>
+                                            <BoxData>
+                                                <Body>{aImg.txt}</Body>
+                                            </BoxData>
+                                            <BoxData>
+                                                <Body>{aImg.img}</Body>
+                                            </BoxData>
+                                            <BoxData>
+                                                <Body>{aImg._id}</Body>
+                                            </BoxData>
+                                        </tr>
+                                    ))
+                            }
+                        </StyledTable>
+                    </div>}
+                </Box>
+            </>
+        )
+
+        const NotLogin = (
+            <>
+                <StyledLink onClick={this.handleGoLogin}>GO TO LOGIN</StyledLink>
+            </>
+        )
+
+        const StillLoading = (
+            <>
+                <Body>LOADING...</Body>
+            </>
+        )
 
         return (
             <Background>
@@ -227,91 +372,12 @@ class Admin extends Component {
                     <Box>
                         <Title>ADMIN</Title>
                     </Box>
-                    <Box>
-                        <Head>DB</Head>
-                        <StyledSelect onChange={this.handleSelectDB}>
-                            <option disabled selected>Select...</option>
-                            <option>Chip</option>
-                            <option>Gallery</option>
-                        </StyledSelect>
-                    </Box>
-                    <Box>
-                        <Head>API</Head>
-                        <StyledSelect onChange={this.handleSelectAPI}>
-                            <option disabled selected>Select...</option>
-                            <option>ADD</option>
-                            <option>EDIT</option>
-                            <option>DELETE</option>
-                        </StyledSelect>
-                    </Box>
-                    {(API !== "ADD") && <Box>
-                        <Head>ID</Head>
-                        <StyledInput placeholder="ID..." onChange={this.handleFormID} value={ID} />
-                    </Box>}
-                    {(API !== "DELETE") && <Box>
-                        <Head>BODY</Head>
-                        <StyledField placeholder="Insert JSON BODY..." onChange={this.handleFormBODY} value={BODY} />
-                    </Box>}
-                    <Box>
-                        <StyledButton onClick={this.handleSubmit}>SUBMIT</StyledButton>
-                    </Box>
-                    <Box>
-                        <StyledLine />
-                        <Head>DATA</Head>
-                        {(DB === "Chip") && <div>
-                            <DbName>CHIP</DbName>
-                            <StyledTable>
-                                <tr>
-                                    <BoxHead><Body>LABEL</Body></BoxHead>
-                                    <BoxHead><Body>ICON</Body></BoxHead>
-                                    <BoxHead><Body>ID</Body></BoxHead>
-                                </tr>
-                                {
-                                    chipList.map((aChip) => (
-                                        <tr>
-                                            <BoxData>
-                                                <Body>{aChip.label}</Body>
-                                            </BoxData>
-                                            <BoxData>
-                                                <Body>{aChip.icon1}</Body>
-                                            </BoxData>
-                                            <BoxData>
-                                                <Body>{aChip._id}</Body>
-                                            </BoxData>
-                                        </tr>
-                                    ))
-                                }
-                            </StyledTable>
-                        </div>}
-                        {(DB === "Gallery") && <div>
-                            <DbName>GALLERY</DbName>
-                            <StyledTable>
-                                <tr>
-                                    <BoxHead><Body>TEXT</Body></BoxHead>
-                                    <BoxHead><Body>URL</Body></BoxHead>
-                                    <BoxHead><Body>ID</Body></BoxHead>
-                                </tr>
-                                {
-                                        imgList.map((aImg) => (
-                                            <tr>
-                                                <BoxData>
-                                                    <Body>{aImg.txt}</Body>
-                                                </BoxData>
-                                                <BoxData>
-                                                    <Body>{aImg.img}</Body>
-                                                </BoxData>
-                                                <BoxData>
-                                                    <Body>{aImg._id}</Body>
-                                                </BoxData>
-                                            </tr>
-                                        ))
-                                }
-                            </StyledTable>
-                        </div>}
-                    </Box>
+                    {(isLoading&&StillLoading)}
+                    {(!isLoading&&haveCookie&&DoneLogin)}
+                    {(!isLoading&&!haveCookie&&NotLogin)}
                     <div>
                         <StyledLine />
-                        <a href='http://localhost:3000/' >BACK TO MAIN PAGE</a>
+                        <StyledLink onClick={this.handleGoBack}>BACK TO MAIN PAGE</StyledLink>
                     </div>
                 </Container>
             </Background>

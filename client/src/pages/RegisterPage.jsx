@@ -37,6 +37,7 @@ const StyledInput = styled.input`
 `
 
 const StyledButton = styled.button`
+    cursor: pointer;
     margin: 5px;
     padding: 5px;
     border: none;
@@ -51,7 +52,14 @@ class Register extends Component {
       this.state = {
           username: null,
           password: null,
+          isLoading: true,
       }
+    }
+
+    componentDidMount() {
+        this.setState({
+            isLoading: false
+        })
     }
 
     handleSubmit = async () => {
@@ -86,9 +94,11 @@ class Register extends Component {
     render() {
         const {
             status,
+            isLoading,
         } = this.state
-        return (
-            <Container>
+
+        const DoneLoading = (
+            <>
                 <HeadF>Register</HeadF>
                 <Box>
                     <LabelF>username</LabelF>
@@ -111,9 +121,24 @@ class Register extends Component {
                 <StyledButton type="submit" onClick={this.handleSubmit}>Register</StyledButton>
                 < br/>
                 <a href="/Login">Login</a>
+                <br />
+                <a href="/">Back</a>
                 {(status)&&<DialogBox>
                     <Dialog>FAIL TO REGISTER</Dialog>
                 </DialogBox>}
+            </>
+        )
+    
+        const StillLoading = (
+            <>
+                <Dialog>LOADING...</Dialog>
+            </>
+        )
+
+        return (
+            <Container>
+                {(isLoading&&StillLoading)}
+                {(!isLoading&&DoneLoading)}
             </Container>
         )
     }

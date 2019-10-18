@@ -22,10 +22,14 @@ const Text = styled.p`
 
 
 class Head extends Component {
+  handleGoLogin = () => {
+    window.location.href='http://localhost:3000/Login'
+  }
+
   render() {
     return (
       <Wrapper>
-        <Box>
+        <Box onClick={this.handleGoLogin}>
           <Text>WORK</Text>
         </Box>
       </Wrapper>
