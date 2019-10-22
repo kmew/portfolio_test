@@ -12,7 +12,7 @@ router.route('/').get( async (erq, res) => {
             label,
             icon1,
         }))
-        console.log(result)
+        // console.log(result)
         res.json({ result: output })
     } catch (error) {
         console.log('Error at getChip api', error)

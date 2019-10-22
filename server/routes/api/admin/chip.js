@@ -7,7 +7,6 @@ const router = express.Router()
 
 // read all
 router.route('/').get( async (req, res) => {
-    console.log("Read all: ", req.body);
     try {
         const result = await Chip.find()
         const output = result.map(({ _id, label, icon1 }) => ({
@@ -15,7 +14,7 @@ router.route('/').get( async (req, res) => {
             label,
             icon1,
         }))
-        console.log(result)
+        // console.log(result)
         res.json({ result: output })
     } catch (error) {
         console.log('Error at read all Chip api', error)

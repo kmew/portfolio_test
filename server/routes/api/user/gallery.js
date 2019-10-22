@@ -12,7 +12,7 @@ router.route('/').get(async (erq, res) => {
             txt,
             img
         }))
-        console.log(result)
+        // console.log(result)
         res.json({ result: output })
     } catch (error) {
         console.log('Error at getFormsCondition api', error)

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let ChipSchema = new Schema({
-    label: {
+let TokenSchema = new Schema({
+    username: {
         type: String
     },
-    icon1: {
+    token: {
         type: String
     },
 })
 
-module.exports = mongoose.model('ChipSchema', ChipSchema)
+module.exports = mongoose.model('TokenSchema', TokenSchema)

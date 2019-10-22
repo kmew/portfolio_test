@@ -7,7 +7,6 @@ const router = express.Router()
 
 // read all
 router.route('/').get( async (req, res) => {
-    console.log("Read all: ", req.body);
     try {
         const result = await Gallery.find()
         const output = result.map(({ _id, txt, img }) => ({
@@ -15,7 +14,7 @@ router.route('/').get( async (req, res) => {
             txt,
             img
         }))
-        console.log(result)
+        // console.log(result)
         res.json({ result: output })
     } catch (error) {
         console.log('Error at read all Gallery api', error)
