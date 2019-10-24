@@ -5,7 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = 4000;
 
-const Index = require('./routes/api')
+const API = require('./routes/api')
+const Authen = require('./routes/auth')
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -16,7 +17,8 @@ connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
 
-app.use('/', Index);
+app.use('/api',API)
+app.use('/auth', Authen)
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);

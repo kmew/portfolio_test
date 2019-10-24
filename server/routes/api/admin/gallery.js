@@ -42,7 +42,6 @@ router.route('/:id').put( async (req, res) => {
     console.log("Update: ", req.body);
     try {
         const id = req.params.id
-        console.log(id);
         const result = await Gallery.findByIdAndUpdate(id, req.body)
         res.json({ result })
     } catch(error) {
@@ -71,7 +70,6 @@ router.route('/:id').delete( async (req, res) => {
     console.log("Delete all: ", req.body);
     try{
         const id = req.params.id
-        console.log(id);
         const result = await Gallery.findByIdAndRemove(id, req.body)
         res.json({ result })
     } catch(error) {

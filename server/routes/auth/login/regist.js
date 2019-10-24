@@ -1,14 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const expressValidator = require('express-validator')
 
 let User = require('../../../auth.model')
 
-// router.use(expressValidator)
-
 router.route('/').post( async (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
+    const {username, password} = req.body
 
     console.log(req.body)
 

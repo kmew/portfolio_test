@@ -119,8 +119,8 @@ class Admin extends Component {
         this.state = {
             DB: null,
             API: null,
-            ID: null,
-            BODY: null,
+            ID: "",
+            BODY: "",
             chipList: [{}],
             imgList: [{}],
             haveCookie: false,
@@ -130,11 +130,34 @@ class Admin extends Component {
 
     async componentDidMount() {
         this.fetchData()
-        const cookie = this.getCookie("username")
+        const cookie = this.getCookie("token")
         if(cookie!=="") {
-            this.setState({
-                haveCookie: true
-            })
+            try {
+                const res = await axios.post('http://localhost:4000/auth/token/verify', {token: cookie})
+                console.log(res.data)
+                if(res.data==="token found -> expired") {
+                    console.log("delete expired")
+                    // clear cookie
+                    const past = new Date()
+                    const time = past.getTime()
+                    const pastExpire = time - (1000*36000)
+                    past.setTime(pastExpire)
+                    document.cookie = `token=; expires=${past}`
+                    this.setState({
+                        haveCookie: false
+                    })
+                } else {
+                    console.log("do nothing")
+                    this.setState({
+                        haveCookie: true
+                    })
+                }
+            } catch(error) {
+                console.log(error)
+                this.setState({
+                    haveCookie: false
+                })
+            }
         }
         this.setState({
             isLoading: false
@@ -143,7 +166,7 @@ class Admin extends Component {
 
     fetchData = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/admin/gallery/')
+            const res = await axios.get('http://localhost:4000/api/admin/gallery/')
             this.setState({
                 imgList: (res.data.result)
             })
@@ -152,7 +175,7 @@ class Admin extends Component {
         }
     
         try {
-            const res = await axios.get('http://localhost:4000/admin/chip/')
+            const res = await axios.get('http://localhost:4000/api/admin/chip/')
             this.setState({
               chipList: (res.data.result)
             })
@@ -222,13 +245,13 @@ class Admin extends Component {
                 try {
                     switch(API) {
                         case "ADD":
-                            res = await axios.post(`http://localhost:4000/admin/${DB}/`, JSON.parse(BODY))
+                            res = await axios.post(`http://localhost:4000/api/admin/${DB}/`, JSON.parse(BODY))
                             break
                         case "EDIT":
-                            res = await axios.put(`http://localhost:4000/admin/${DB}/${ID}`, JSON.parse(BODY))
+                            res = await axios.put(`http://localhost:4000/api/admin/${DB}/${ID}`, JSON.parse(BODY))
                             break
                         case "DELETE":
-                            res = await axios.delete(`http://localhost:4000/admin/${DB}/${ID}`)
+                            res = await axios.delete(`http://localhost:4000/api/admin/${DB}/${ID}`)
                             break
                         default:
                             break
@@ -246,8 +269,16 @@ class Admin extends Component {
         }
     }
 
-    handleGoBack = () => {
-        document.cookie = `username=`;
+    handleGoBack = async () => {
+        const tokenCookie = this.getCookie("token")
+        const res = await axios.post(`http://localhost:4000/auth/token/delete/`, {token: tokenCookie})
+        console.log(res.data)
+        // EXPIRE TIME
+        const past = new Date()
+        const time = past.getTime()
+        const pastExpire = time - (1000*36000)
+        past.setTime(pastExpire)
+        document.cookie = `token=; expires=${past}`
         window.location.href='http://localhost:3000/'
     }
 
@@ -309,10 +340,10 @@ class Admin extends Component {
                                 <BoxHead><Body>ID</Body></BoxHead>
                             </tr>
                             {
-                                chipList.map((aChip) => (
-                                    <tr>
+                                chipList.map((aChip, i) => (
+                                    <tr key={i}>
                                         <BoxData>
-                                            <Body>{aChip.label}</Body>
+                                            <Body key={i}>{aChip.label}</Body>
                                         </BoxData>
                                         <BoxData>
                                             <Body>{aChip.icon1}</Body>

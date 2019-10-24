@@ -120,13 +120,13 @@ class Gallery extends Component {
       <Wrapper>
         <GalleryBox>
           {
-            imgList.map((aImg) => (
-              <ImgBox>
+            imgList.map((aImg, i ) => (
+              <ImgBox key={i}>
                 <Overlay>
                   <OverlayText>{aImg.txt}</OverlayText>
                   <OverlayButton onClick={handleModalOpen}>LINK</OverlayButton>
                 </Overlay>
-                <Img src={aImg.img} alt={aImg.txt} />
+                <Img src={aImg.img} alt={aImg.txt} key={i}/>
               </ImgBox>
             ))
           }

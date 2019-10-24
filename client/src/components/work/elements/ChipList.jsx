@@ -46,9 +46,9 @@ class ChipList extends Component {
       <Wrapper>
         <ChipBox>
           {
-            chipList.map((aChip) => (
+            chipList.map((aChip, i) => (
               <Chip
-                key={aChip.label}
+                key={i}
                 style={{ margin: '5px' }}
                 icon={<Icon style={{ color: '#70C1B3' }} >{aChip.icon1}</Icon>}
                 label={aChip.label}

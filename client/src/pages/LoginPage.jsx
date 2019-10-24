@@ -61,7 +61,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        const cookie = this.getCookie("username")
+        const cookie = this.getCookie("token")
         if(cookie!=="") {
             window.location.href='http://localhost:3000/Admin'
         } else {
@@ -95,11 +95,13 @@ class Login extends Component {
         console.log('username ' + this.state.username)
         console.log('password ' + this.state.password)
         try {
-            const res = await axios.post('http://localhost:4000/auth/login/', {
+            const res = await axios.post('http://localhost:4000/auth/login/login/', {
                                                                                 username: username,
                                                                                 password: password})
+            const res1 = await axios.post('http://localhost:4000/auth/token/add/', {username: username})
             if(res.data === "Success") {
-                document.cookie = `username=${username}`
+                // COOKIE
+                document.cookie = `token=${res1.data}`
                 window.location.href='http://localhost:3000/Admin'
                 this.setState({status: false})
             } else {

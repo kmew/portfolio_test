@@ -70,7 +70,7 @@ class Register extends Component {
         console.log('username ' + username)
         console.log('password ' + password)
         try {
-            const res = await axios.post('http://localhost:4000/auth/regist/', {
+            const res = await axios.post('http://localhost:4000/auth/login/regist/', {
                                                                                 username: username,
                                                                                 password: password})
             if(res.data === "Success") {

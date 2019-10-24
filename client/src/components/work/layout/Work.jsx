@@ -68,7 +68,7 @@ class Work extends Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get('http://localhost:4000/user/gallery/')
+      const res = await axios.get('http://localhost:4000/api/user/gallery')
       this.setState({
         imgList: (res.data.result)
       })
@@ -78,7 +78,7 @@ class Work extends Component {
     }
 
     try {
-      const res = await axios.get('http://localhost:4000/user/chip/')
+      const res = await axios.get('http://localhost:4000/api/user/chip/')
       this.setState({
         chipList: (res.data.result)
       })

@@ -159,11 +159,6 @@ export default class ChooseDesignbox extends Component {
     // const { BodyText } = this.props;
 
     // New Adding
-    const {
-      open,
-    } = this.state
-    console.log(open)
-
     return (
       <WrapperContainer>
         <ProfileCard>
