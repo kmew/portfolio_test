@@ -17,8 +17,26 @@ connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
 
-app.use('/api',API)
-app.use('/auth', Authen)
+//app.use('/api', Api)
+//app.use('/auth', Authen)
+app.use('/api',
+    proxy({
+        target: "http://localhost:4000",
+        changeOrigin: true,
+        pathRewrite: {
+            "^/api": "/api/v1"
+        }
+    })
+)
+app.use('/auth',
+    proxy({
+        target: "http://localhost:4000",
+        changeOrigin: true,
+        pathRewrite: {
+            "^/auth": "/auth/v1"
+        }
+    })
+)
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
