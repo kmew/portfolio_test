@@ -8,7 +8,21 @@ const PORT = 4000;
 const API = require('./routes/api')
 const Authen = require('./routes/auth')
 
-app.use(cors());
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:4000'
+]
+app.use(cors({
+    origin: function(origin, callback){
+        if(allowedOrigins.indexOf(origin) === -1){
+            var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 mongoose.connect('mongodb://127.0.0.1:27017/todos', { useNewUrlParser: true });
@@ -19,24 +33,6 @@ connection.once('open', function() {
 
 app.use('/api', API)
 app.use('/auth', Authen)
-app.use('/api',
-    proxy({
-        target: "http://localhost:4000",
-        changeOrigin: true,
-        pathRewrite: {
-            "^/api": "/api/v1"
-        }
-    })
-)
-app.use('/auth',
-    proxy({
-        target: "http://localhost:4000",
-        changeOrigin: true,
-        pathRewrite: {
-            "^/auth": "/auth/v1"
-        }
-    })
-)
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
