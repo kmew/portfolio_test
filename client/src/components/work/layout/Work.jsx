@@ -68,8 +68,8 @@ class Work extends Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get('http://13.58.199.50:4000/api/user/gallery')
-      //const res = await axios.get('http://localhost:4000/api/user/gallery')
+      //const res = await axios.get('http://13.58.199.50:4000/api/user/gallery')
+      const res = await axios.get('http://localhost:4000/api/user/gallery')
       console.log("check img: ", res.data.result)
       this.setState({
         imgList: (res.data.result)
