@@ -279,11 +279,11 @@ class Admin extends Component {
         const pastExpire = time - (1000*36000)
         past.setTime(pastExpire)
         document.cookie = `token=; expires=${past}`
-        window.location.href='http://localhost:3000/'
+        window.location.href='/'
     }
 
     handleGoLogin = () => {
-        window.location.href='http://localhost:3000/Login'
+        window.location.href='/Login'
     }
 
     render() {

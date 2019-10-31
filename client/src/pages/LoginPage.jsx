@@ -63,7 +63,7 @@ class Login extends Component {
     componentDidMount() {
         const cookie = this.getCookie("token")
         if(cookie!=="") {
-            window.location.href='http://localhost:3000/Admin'
+            window.location.href='/Admin'
         } else {
             this.setState({
                 isLoading: false
