@@ -70,6 +70,7 @@ class Work extends Component {
     try {
       const res = await axios.get('http://13.58.199.50:4000/api/user/gallery')
       //const res = await axios.get('http://localhost:4000/api/user/gallery')
+      console.log("check img: ",res)
       this.setState({
         imgList: (res.data.result)
       })
@@ -80,6 +81,7 @@ class Work extends Component {
 
     try {
       const res = await axios.get('http://localhost:4000/api/user/chip/')
+      console.log("check chip: ",res)
       this.setState({
         chipList: (res.data.result)
       })
