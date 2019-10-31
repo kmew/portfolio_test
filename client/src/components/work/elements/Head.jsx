@@ -23,7 +23,8 @@ const Text = styled.p`
 
 class Head extends Component {
   handleGoLogin = () => {
-    window.location.href='http://localhost:3000/Login'
+    window.location.href='/Login'
+    // window.location.href='http://localhost:3000/Login'
   }
 
   render() {
