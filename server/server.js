@@ -11,7 +11,9 @@ const Authen = require('./routes/auth')
 const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:4000',
-    'http://13.58.199.50'
+    'http://13.58.199.50',
+    'http://13.58.199.50:3000',
+    'http://13.58.199.50:4000'
 ]
 app.use(cors({
     origin: function(origin, callback){
